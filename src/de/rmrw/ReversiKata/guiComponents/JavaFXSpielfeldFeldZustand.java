@@ -1,6 +1,6 @@
-package de.rmrw.ReversiKata.code;
+package de.rmrw.ReversiKata.guiComponents;
 
-public enum SpielfeldFeldZustand {
+public enum JavaFXSpielfeldFeldZustand {
 	LEER_UND_NICHT_BESETZBAR("Leer und nicht besetzbar"),
 	LEER_UND_BESETZBAR1("Leer und besetzbar durch Spieler 1"),
 	LEER_UND_BESETZBAR2("Leer und besetzbar durch Spieler 2"),
@@ -9,7 +9,7 @@ public enum SpielfeldFeldZustand {
 	
 	private String name=null;
 	
-	SpielfeldFeldZustand(String _name){
+	JavaFXSpielfeldFeldZustand(String _name){
 		this.setName(_name);
 	}
 
@@ -21,8 +21,8 @@ public enum SpielfeldFeldZustand {
 		this.name = name;
 	}
 	
-	public static SpielfeldFeldZustand getZustandFromString(String name){
-		for (SpielfeldFeldZustand sffz : SpielfeldFeldZustand.values())
+	public static JavaFXSpielfeldFeldZustand getZustandFromString(String name){
+		for (JavaFXSpielfeldFeldZustand sffz : JavaFXSpielfeldFeldZustand.values())
 			if (sffz.getName().equals(name))
 				return sffz;
 		return null;

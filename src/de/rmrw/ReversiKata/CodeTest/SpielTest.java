@@ -1,4 +1,4 @@
-package de.rmrw.ReversiKata.test;
+package de.rmrw.ReversiKata.CodeTest;
 
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;

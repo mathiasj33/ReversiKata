@@ -14,19 +14,19 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import de.rmrw.ReversiKata.code.IFSpielModel;
-import de.rmrw.ReversiKata.views.JavaFXSpiel;
+import de.rmrw.ReversiKata.views.JavaFXSpielView;
 import de.rmrw.ReversiKata.views.JavaFXSpielerView;
 import de.rmrw.ReversiKata.views.JavaFXSpielfeldFeldProperties;
 import de.rmrw.ReversiKata.views.JavaFXSpielfeldView;
 
-public class JavaFXSpielTest {
+public class JavaFXSpielViewTest {
 
 	private IFSpielModel mockModel;
 	private JavaFXSpielfeldFeldProperties mockProperties;
 	private JavaFXSpielfeldView mockSpielfeldView;
 	private JavaFXSpielerView mockSpielerView;
-	private JavaFXSpiel spielView;
-	private JavaFXSpiel spySpielView;
+	private JavaFXSpielView spielView;
+	private JavaFXSpielView spySpielView;
 	
 	private void vorbereitungTestKonstruktorUndInit() {
 		mockModel = mock(IFSpielModel.class);
@@ -35,7 +35,7 @@ public class JavaFXSpielTest {
 		mockSpielerView = mock(JavaFXSpielerView.class);
 		mockProperties = mock(JavaFXSpielfeldFeldProperties.class);
 
-		spielView = new JavaFXSpiel( mockModel,
+		spielView = new JavaFXSpielView( mockModel,
 									 mockProperties
 		   				);
 		spySpielView = spy(spielView);

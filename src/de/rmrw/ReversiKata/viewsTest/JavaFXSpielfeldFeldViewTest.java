@@ -13,10 +13,10 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import de.rmrw.ReversiKata.code.IFSpielModel;
-import de.rmrw.ReversiKata.views.JavaFXSpielfeldFeld;
 import de.rmrw.ReversiKata.views.JavaFXSpielfeldFeldProperties;
 import de.rmrw.ReversiKata.views.JavaFXSpielfeldFeldView;
-import de.rmrw.ReversiKata.code.SpielfeldFeldZustand;
+import de.rmrw.ReversiKata.guiComponents.JavaFXSpielfeldFeld;
+import de.rmrw.ReversiKata.guiComponents.JavaFXSpielfeldFeldZustand;
 
 
 public class JavaFXSpielfeldFeldViewTest {
@@ -63,9 +63,9 @@ public class JavaFXSpielfeldFeldViewTest {
 	@Test
 	public final void testUpdate(){
 
-		when(mockModel.getFeldZustand(1, 0)).thenReturn(SpielfeldFeldZustand.LEER_UND_BESETZBAR1);
+		when(mockModel.getFeldZustand(1, 0)).thenReturn(JavaFXSpielfeldFeldZustand.LEER_UND_BESETZBAR1);
 		spyFeld.update();
-		verify(mockFeldIntern).setZustand(SpielfeldFeldZustand.LEER_UND_BESETZBAR1);
+		verify(mockFeldIntern).setZustand(JavaFXSpielfeldFeldZustand.LEER_UND_BESETZBAR1);
 	}
 	
 	@Test
@@ -79,7 +79,7 @@ public class JavaFXSpielfeldFeldViewTest {
 		Mockito.doReturn(feldIntern2).when(spyFeld2).createJavaFXSpielfeldFeld();
 		spyFeld2.init();
 		
-		when(mockModel.getFeldZustand(2, 0)).thenReturn(SpielfeldFeldZustand.LEER_UND_BESETZBAR2);
+		when(mockModel.getFeldZustand(2, 0)).thenReturn(JavaFXSpielfeldFeldZustand.LEER_UND_BESETZBAR2);
 		
 		spyFeld2.update();
 		feldIntern2.onMousePressed();

@@ -12,7 +12,7 @@ import org.mockito.Mockito;
 import de.rmrw.ReversiKata.code.IFSpielModel;
 import de.rmrw.ReversiKata.code.ReversiSpiel;
 import de.rmrw.ReversiKata.views.IFSpielView;
-import de.rmrw.ReversiKata.views.JavaFXSpiel;
+import de.rmrw.ReversiKata.views.JavaFXSpielView;
 import de.rmrw.ReversiKata.views.JavaFXSpielfeldFeldProperties;
 
 public class ReversiMainJavaFX extends Application {
@@ -39,7 +39,7 @@ public class ReversiMainJavaFX extends Application {
 				ANGEDEUTETEFARBESPIELER2  // Angedeutete Farbe Sp2
 				);
 
-		JavaFXSpiel sV = new JavaFXSpiel(
+		JavaFXSpielView sV = new JavaFXSpielView(
 				model,
 				spielfeldFeldProperties
 				);

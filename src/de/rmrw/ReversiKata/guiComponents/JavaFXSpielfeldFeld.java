@@ -1,6 +1,6 @@
-package de.rmrw.ReversiKata.views;
+package de.rmrw.ReversiKata.guiComponents;
 
-import de.rmrw.ReversiKata.code.SpielfeldFeldZustand;
+import de.rmrw.ReversiKata.views.JavaFXSpielfeldFeldProperties;
 import javafx.beans.value.ChangeListener;
 import javafx.event.EventHandler;
 import javafx.scene.input.MouseEvent;
@@ -19,8 +19,8 @@ public class JavaFXSpielfeldFeld extends Pane {
 	
 	private Rectangle rect = null;
 	private Circle kreis = null;
-	private SpielfeldFeldZustand zustand = null;
-	private ChangeListener<SpielfeldFeldZustand> changeListener;
+	private JavaFXSpielfeldFeldZustand zustand = null;
+	private ChangeListener<JavaFXSpielfeldFeldZustand> changeListener;
 
 	public JavaFXSpielfeldFeld(
 			JavaFXSpielfeldFeldProperties properties) {
@@ -66,10 +66,10 @@ public class JavaFXSpielfeldFeld extends Pane {
 			}
 
 		});
-		setZustand(SpielfeldFeldZustand.LEER_UND_NICHT_BESETZBAR);
+		setZustand(JavaFXSpielfeldFeldZustand.LEER_UND_NICHT_BESETZBAR);
 	}
 
-	public void addListener(ChangeListener<SpielfeldFeldZustand> changeListener_) {
+	public void addListener(ChangeListener<JavaFXSpielfeldFeldZustand> changeListener_) {
 		this.changeListener = changeListener_;
 	}
 
@@ -86,49 +86,49 @@ public class JavaFXSpielfeldFeld extends Pane {
 	}
 
 	public void onMousePressed() {
-		if (getZustand()==SpielfeldFeldZustand.LEER_UND_BESETZBAR1){
-			setZustand(SpielfeldFeldZustand.BESETZT1);
-			changeListener.changed(null, SpielfeldFeldZustand.LEER_UND_BESETZBAR1, SpielfeldFeldZustand.BESETZT1);
+		if (getZustand()==JavaFXSpielfeldFeldZustand.LEER_UND_BESETZBAR1){
+			setZustand(JavaFXSpielfeldFeldZustand.BESETZT1);
+			changeListener.changed(null, JavaFXSpielfeldFeldZustand.LEER_UND_BESETZBAR1, JavaFXSpielfeldFeldZustand.BESETZT1);
 		}
-		if (getZustand()==SpielfeldFeldZustand.LEER_UND_BESETZBAR2){
-			setZustand(SpielfeldFeldZustand.BESETZT2);
-			changeListener.changed(null, SpielfeldFeldZustand.LEER_UND_BESETZBAR2, SpielfeldFeldZustand.BESETZT2);
+		if (getZustand()==JavaFXSpielfeldFeldZustand.LEER_UND_BESETZBAR2){
+			setZustand(JavaFXSpielfeldFeldZustand.BESETZT2);
+			changeListener.changed(null, JavaFXSpielfeldFeldZustand.LEER_UND_BESETZBAR2, JavaFXSpielfeldFeldZustand.BESETZT2);
 		}
 	}
 
 	public void onMouseEnter() {
-		if (getZustand()==SpielfeldFeldZustand.LEER_UND_BESETZBAR1)
+		if (getZustand()==JavaFXSpielfeldFeldZustand.LEER_UND_BESETZBAR1)
 			kreis.setFill(getAngedeuteteFarbeSpieler1());
-		if (getZustand()==SpielfeldFeldZustand.LEER_UND_BESETZBAR2)
+		if (getZustand()==JavaFXSpielfeldFeldZustand.LEER_UND_BESETZBAR2)
 			kreis.setFill(getAngedeuteteFarbeSpieler2());
 	}
 
 	public void onMouseExited() {
-		if (getZustand()==SpielfeldFeldZustand.LEER_UND_BESETZBAR1 ||
-			getZustand()==SpielfeldFeldZustand.LEER_UND_BESETZBAR2)
+		if (getZustand()==JavaFXSpielfeldFeldZustand.LEER_UND_BESETZBAR1 ||
+			getZustand()==JavaFXSpielfeldFeldZustand.LEER_UND_BESETZBAR2)
 			kreis.setFill(Color.TRANSPARENT);
 	}
 
 	
-	public void setZustand(SpielfeldFeldZustand zustand_) {
+	public void setZustand(JavaFXSpielfeldFeldZustand zustand_) {
 		this.zustand = zustand_;
 		update();
 	}
 
 	
-	public SpielfeldFeldZustand getZustand() {
+	public JavaFXSpielfeldFeldZustand getZustand() {
 		return this.zustand;
 	}
 	
 	private void update() {
 		System.out.println("JavaFXSpielfeldFeld.update()");
-		if (getZustand()==SpielfeldFeldZustand.BESETZT1)
+		if (getZustand()==JavaFXSpielfeldFeldZustand.BESETZT1)
 			kreis.setFill(spielfeldFeldProperties.getFarbeSpieler1());
-		if (getZustand()==SpielfeldFeldZustand.BESETZT2)
+		if (getZustand()==JavaFXSpielfeldFeldZustand.BESETZT2)
 			kreis.setFill(spielfeldFeldProperties.getFarbeSpieler2());
-		if (getZustand()==SpielfeldFeldZustand.LEER_UND_BESETZBAR1 || 
-			getZustand()==SpielfeldFeldZustand.LEER_UND_BESETZBAR2 ||
-			getZustand()==SpielfeldFeldZustand.LEER_UND_NICHT_BESETZBAR)
+		if (getZustand()==JavaFXSpielfeldFeldZustand.LEER_UND_BESETZBAR1 || 
+			getZustand()==JavaFXSpielfeldFeldZustand.LEER_UND_BESETZBAR2 ||
+			getZustand()==JavaFXSpielfeldFeldZustand.LEER_UND_NICHT_BESETZBAR)
 			kreis.setFill(Color.TRANSPARENT);
 	}
 

@@ -4,7 +4,7 @@ import javafx.geometry.Insets;
 import javafx.scene.layout.BorderPane;
 import de.rmrw.ReversiKata.code.IFSpielModel;
 
-public class JavaFXSpiel extends BorderPane implements IFSpielView{
+public class JavaFXSpielView extends BorderPane implements IFSpielView{
 	
 	private IFSpielModel model 										= null;
 	
@@ -14,7 +14,7 @@ public class JavaFXSpiel extends BorderPane implements IFSpielView{
 	private JavaFXSpielerView spielerView;
 
 	
-	public JavaFXSpiel(IFSpielModel model_, JavaFXSpielfeldFeldProperties spielfeldFeldProperties_) {
+	public JavaFXSpielView(IFSpielModel model_, JavaFXSpielfeldFeldProperties spielfeldFeldProperties_) {
 		setModel(model_);
 		setPadding(new Insets(40, 40, 40, 40));
 		spielfeldFeldProperties = spielfeldFeldProperties_;

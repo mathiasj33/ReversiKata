@@ -7,7 +7,8 @@ import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 import de.rmrw.ReversiKata.code.IFSpielModel;
-import de.rmrw.ReversiKata.code.SpielfeldFeldZustand;
+import de.rmrw.ReversiKata.guiComponents.JavaFXSpielfeldFeld;
+import de.rmrw.ReversiKata.guiComponents.JavaFXSpielfeldFeldZustand;
 
 
 public class JavaFXSpielfeldFeldView extends Pane implements IFSpielView {
@@ -29,15 +30,15 @@ public class JavaFXSpielfeldFeldView extends Pane implements IFSpielView {
 	
 	public void init(){
 		this.spielfeldFeld 	= createJavaFXSpielfeldFeld();
-		this.spielfeldFeld.addListener(new ChangeListener<SpielfeldFeldZustand>() {
+		this.spielfeldFeld.addListener(new ChangeListener<JavaFXSpielfeldFeldZustand>() {
 			 
 			@Override
 			public void changed(
-					ObservableValue<? extends SpielfeldFeldZustand> observable,
-					SpielfeldFeldZustand oldValue, SpielfeldFeldZustand newValue) {
-				if (oldValue.equals(SpielfeldFeldZustand.LEER_UND_BESETZBAR1) && newValue.equals(SpielfeldFeldZustand.BESETZT1))
+					ObservableValue<? extends JavaFXSpielfeldFeldZustand> observable,
+					JavaFXSpielfeldFeldZustand oldValue, JavaFXSpielfeldFeldZustand newValue) {
+				if (oldValue.equals(JavaFXSpielfeldFeldZustand.LEER_UND_BESETZBAR1) && newValue.equals(JavaFXSpielfeldFeldZustand.BESETZT1))
 					model.besetzeFeld(zeile, spalte, 1);
-				if (oldValue.equals(SpielfeldFeldZustand.LEER_UND_BESETZBAR2) && newValue.equals(SpielfeldFeldZustand.BESETZT2))
+				if (oldValue.equals(JavaFXSpielfeldFeldZustand.LEER_UND_BESETZBAR2) && newValue.equals(JavaFXSpielfeldFeldZustand.BESETZT2))
 					model.besetzeFeld(zeile, spalte, 2);
 			}    
         });
@@ -59,7 +60,7 @@ public class JavaFXSpielfeldFeldView extends Pane implements IFSpielView {
 
 	@Override
 	public void update() {
-		SpielfeldFeldZustand zustand = model.getFeldZustand(zeile, spalte);
+		JavaFXSpielfeldFeldZustand zustand = model.getFeldZustand(zeile, spalte);
 		spielfeldFeld.setZustand(zustand);
 	}
 

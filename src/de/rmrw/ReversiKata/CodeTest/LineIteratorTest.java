@@ -1,4 +1,4 @@
-package de.rmrw.ReversiKata.test;
+package de.rmrw.ReversiKata.CodeTest;
 
 import java.util.HashSet;
 import java.util.Set;

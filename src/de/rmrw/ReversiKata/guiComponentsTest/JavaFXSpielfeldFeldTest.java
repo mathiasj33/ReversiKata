@@ -1,4 +1,4 @@
-package de.rmrw.ReversiKata.viewsTest;
+package de.rmrw.ReversiKata.guiComponentsTest;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.paint.Color;
@@ -7,8 +7,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.rmrw.ReversiKata.code.SpielfeldFeldZustand;
-import de.rmrw.ReversiKata.views.JavaFXSpielfeldFeld;
+import de.rmrw.ReversiKata.guiComponents.JavaFXSpielfeldFeld;
+import de.rmrw.ReversiKata.guiComponents.JavaFXSpielfeldFeldZustand;
 import de.rmrw.ReversiKata.views.JavaFXSpielfeldFeldProperties;
 
 public class JavaFXSpielfeldFeldTest {
@@ -34,12 +34,12 @@ public class JavaFXSpielfeldFeldTest {
 																	);
 		feld = new JavaFXSpielfeldFeld(spielfeldFeldProperties
 										);
-		feld.addListener(new ChangeListener<SpielfeldFeldZustand>() {
+		feld.addListener(new ChangeListener<JavaFXSpielfeldFeldZustand>() {
  
 			@Override
 			public void changed(
-					ObservableValue<? extends SpielfeldFeldZustand> observable,
-					SpielfeldFeldZustand oldValue, SpielfeldFeldZustand newValue) {
+					ObservableValue<? extends JavaFXSpielfeldFeldZustand> observable,
+					JavaFXSpielfeldFeldZustand oldValue, JavaFXSpielfeldFeldZustand newValue) {
 				changed=true;
 				
 			}    
@@ -57,19 +57,19 @@ public class JavaFXSpielfeldFeldTest {
 		Assert.assertEquals(Color.TRANSPARENT, feld.getCircleColor());
 		feld.onMouseExited();
 		
-		feld.setZustand(SpielfeldFeldZustand.LEER_UND_BESETZBAR1);
+		feld.setZustand(JavaFXSpielfeldFeldZustand.LEER_UND_BESETZBAR1);
 		feld.onMouseEnter();
 		Assert.assertEquals(ANGEDEUTETEFARBESPIELER1, feld.getCircleColor());
 		feld.onMouseExited();
 		Assert.assertEquals(Color.TRANSPARENT, feld.getCircleColor());
 
-		feld.setZustand(SpielfeldFeldZustand.LEER_UND_BESETZBAR2);
+		feld.setZustand(JavaFXSpielfeldFeldZustand.LEER_UND_BESETZBAR2);
 		feld.onMouseEnter();
 		Assert.assertEquals(ANGEDEUTETEFARBESPIELER2, feld.getCircleColor());
 		feld.onMouseExited();
 		Assert.assertEquals(Color.TRANSPARENT, feld.getCircleColor());
 
-		feld.setZustand(SpielfeldFeldZustand.BESETZT1);
+		feld.setZustand(JavaFXSpielfeldFeldZustand.BESETZT1);
 		Assert.assertEquals(FARBESPIELER1, feld.getCircleColor());
 		feld.onMouseEnter();
 		Assert.assertEquals(FARBESPIELER1, feld.getCircleColor());
@@ -82,10 +82,10 @@ public class JavaFXSpielfeldFeldTest {
 		feld.onMousePressed();
 		Assert.assertFalse(changed);
 		
-		feld.setZustand(SpielfeldFeldZustand.LEER_UND_BESETZBAR2);
+		feld.setZustand(JavaFXSpielfeldFeldZustand.LEER_UND_BESETZBAR2);
 		feld.onMousePressed();
 		Assert.assertTrue(changed);
-		Assert.assertEquals(SpielfeldFeldZustand.BESETZT2, feld.getZustand());
+		Assert.assertEquals(JavaFXSpielfeldFeldZustand.BESETZT2, feld.getZustand());
 	}
 	
 }

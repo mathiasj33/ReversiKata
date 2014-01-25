@@ -1,4 +1,4 @@
-package de.rmrw.ReversiKata.test;
+package de.rmrw.ReversiKata.CodeTest;
 
 import org.junit.Assert;
 import org.junit.Test;

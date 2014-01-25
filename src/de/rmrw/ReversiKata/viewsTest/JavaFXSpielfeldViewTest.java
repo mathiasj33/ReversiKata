@@ -18,7 +18,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import de.rmrw.ReversiKata.code.IFSpielModel;
-import de.rmrw.ReversiKata.views.JavaFXSpielfeldFeld;
+import de.rmrw.ReversiKata.guiComponents.JavaFXSpielfeldFeld;
 import de.rmrw.ReversiKata.views.JavaFXSpielfeldFeldProperties;
 import de.rmrw.ReversiKata.views.JavaFXSpielfeldFeldView;
 import de.rmrw.ReversiKata.views.JavaFXSpielfeldView;
