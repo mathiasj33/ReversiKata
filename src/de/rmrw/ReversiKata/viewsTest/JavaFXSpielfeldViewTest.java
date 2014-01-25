@@ -20,14 +20,15 @@ import org.junit.Test;
 import de.rmrw.ReversiKata.code.IFSpielModel;
 import de.rmrw.ReversiKata.views.JavaFXSpielfeldFeld;
 import de.rmrw.ReversiKata.views.JavaFXSpielfeldFeldProperties;
+import de.rmrw.ReversiKata.views.JavaFXSpielfeldFeldView;
 import de.rmrw.ReversiKata.views.JavaFXSpielfeldView;
 
 public class JavaFXSpielfeldViewTest {
 	
 	private IFSpielModel mockModel = null;
 	private JavaFXSpielfeldFeldProperties mockSpielfeldFeldProperties = null;
-	private JavaFXSpielfeldFeld mockSpielfeldFeld = null;
-	private JavaFXSpielfeldFeld mockSpielfeldFeld2 = null;
+	private JavaFXSpielfeldFeldView mockSpielfeldFeld = null;
+	private JavaFXSpielfeldFeldView mockSpielfeldFeld2 = null;
 	private JavaFXSpielfeldView spielfeldView = null;
 	private JavaFXSpielfeldView spySpielfeldView = null;
 	
@@ -39,8 +40,8 @@ public class JavaFXSpielfeldViewTest {
 		when(mockModel.getSize()).thenReturn(size);
 		mockSpielfeldFeldProperties = mock(JavaFXSpielfeldFeldProperties.class);
 		
-		mockSpielfeldFeld = mock(JavaFXSpielfeldFeld.class);
-		mockSpielfeldFeld2= mock(JavaFXSpielfeldFeld.class);
+		mockSpielfeldFeld = mock(JavaFXSpielfeldFeldView.class);
+		mockSpielfeldFeld2= mock(JavaFXSpielfeldFeldView.class);
 
 		spielfeldView = new JavaFXSpielfeldView (
 				mockModel,
@@ -52,16 +53,16 @@ public class JavaFXSpielfeldViewTest {
 	@Test
 	public final void testKonstruktorUndInit() {
 		doReturn(mockSpielfeldFeld).when(spySpielfeldView).
-			createJavaFXSpielfeldFeld(eq(mockModel), anyInt(), anyInt(), eq(mockSpielfeldFeldProperties));
+			createJavaFXSpielfeldFeldView(eq(mockModel), anyInt(), anyInt(), eq(mockSpielfeldFeldProperties));
 		doNothing().when(spySpielfeldView).addFeldToChildren(mockSpielfeldFeld);
 		doNothing().when(spySpielfeldView).setGridPaneColumnAndRowIndex(anyInt(), anyInt(), eq(mockSpielfeldFeld));
 		spySpielfeldView.init();
 		
-		verify(spySpielfeldView,times(size*size)).createJavaFXSpielfeldFeld(eq(mockModel), anyInt(), anyInt(), eq(mockSpielfeldFeldProperties));
+		verify(spySpielfeldView,times(size*size)).createJavaFXSpielfeldFeldView(eq(mockModel), anyInt(), anyInt(), eq(mockSpielfeldFeldProperties));
 		verify(spySpielfeldView,times(size*size)).addFeldToChildren(mockSpielfeldFeld);
 		verify(spySpielfeldView,times(size*size)).setGridPaneColumnAndRowIndex(anyInt(), anyInt(), eq(mockSpielfeldFeld));
-		verify(spySpielfeldView,times(1)).createJavaFXSpielfeldFeld(mockModel, size-1, size-1, mockSpielfeldFeldProperties);
-		verify(spySpielfeldView,times(1)).createJavaFXSpielfeldFeld(mockModel, 0, 0, mockSpielfeldFeldProperties);
+		verify(spySpielfeldView,times(1)).createJavaFXSpielfeldFeldView(mockModel, size-1, size-1, mockSpielfeldFeldProperties);
+		verify(spySpielfeldView,times(1)).createJavaFXSpielfeldFeldView(mockModel, 0, 0, mockSpielfeldFeldProperties);
 	}
 
 	@Test
