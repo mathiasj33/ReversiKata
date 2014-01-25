@@ -1,4 +1,4 @@
-package de.rmrw.ReversiKata.CodeTest;
+package de.rmrw.ReversiKata.codeTest;
 
 import de.rmrw.ReversiKata.code.Colors;
 import de.rmrw.ReversiKata.code.Pos;

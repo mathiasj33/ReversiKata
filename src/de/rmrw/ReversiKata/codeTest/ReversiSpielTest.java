@@ -1,4 +1,4 @@
-package de.rmrw.ReversiKata.CodeTest;
+package de.rmrw.ReversiKata.codeTest;
 
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
@@ -22,7 +22,7 @@ import de.rmrw.ReversiKata.views.IFSpielView;
 import de.rmrw.ReversiKata.code.Spieler;
 import de.rmrw.ReversiKata.code.Spielfeld;
 
-public class SpielTest {
+public class ReversiSpielTest {
 
 	private ArrayList<IFSpielView> views = null;
 	private IFSpielView mockView1 = null;

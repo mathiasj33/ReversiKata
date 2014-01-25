@@ -2,7 +2,6 @@ package de.rmrw.ReversiKata.views;
 
 import java.util.ArrayList;
 
-import javafx.collections.ObservableList;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 import de.rmrw.ReversiKata.code.IFSpielModel;

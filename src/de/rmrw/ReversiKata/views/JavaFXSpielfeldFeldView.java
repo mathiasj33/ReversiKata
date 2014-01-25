@@ -2,8 +2,6 @@ package de.rmrw.ReversiKata.views;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.ObservableList;
-import javafx.scene.Node;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 import de.rmrw.ReversiKata.code.IFSpielModel;

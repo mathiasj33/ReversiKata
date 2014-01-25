@@ -3,14 +3,14 @@ package de.rmrw.ReversiKata.AllTests;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
-import de.rmrw.ReversiKata.CodeTest.ColorsTest;
-import de.rmrw.ReversiKata.CodeTest.DirectionIteratorTest;
-import de.rmrw.ReversiKata.CodeTest.LineIteratorTest;
-import de.rmrw.ReversiKata.CodeTest.PosTest;
-import de.rmrw.ReversiKata.CodeTest.SpielTest;
-import de.rmrw.ReversiKata.CodeTest.SpielfeldFeldZustandTest;
-import de.rmrw.ReversiKata.CodeTest.SpielfeldIteratorTest;
-import de.rmrw.ReversiKata.CodeTest.SpielfeldTest;
+import de.rmrw.ReversiKata.codeTest.ColorsTest;
+import de.rmrw.ReversiKata.codeTest.DirectionIteratorTest;
+import de.rmrw.ReversiKata.codeTest.LineIteratorTest;
+import de.rmrw.ReversiKata.codeTest.PosTest;
+import de.rmrw.ReversiKata.codeTest.ReversiSpielTest;
+import de.rmrw.ReversiKata.codeTest.SpielfeldFeldZustandTest;
+import de.rmrw.ReversiKata.codeTest.SpielfeldIteratorTest;
+import de.rmrw.ReversiKata.codeTest.SpielfeldTest;
 import de.rmrw.ReversiKata.guiComponentsTest.JavaFXSpielfeldFeldTest;
 import de.rmrw.ReversiKata.viewsTest.JavaFXSpielViewTest;
 import de.rmrw.ReversiKata.viewsTest.JavaFXSpielfeldFeldViewTest;
@@ -25,7 +25,7 @@ import de.rmrw.ReversiKata.viewsTest.JavaFXSpielfeldViewTest;
 	LineIteratorTest.class, 
 	PosTest.class,
 	DirectionIteratorTest.class,
-	SpielTest.class,
+	ReversiSpielTest.class,
 	SpielfeldFeldZustandTest.class,
 	JavaFXSpielfeldFeldTest.class,
 	JavaFXSpielfeldFeldViewTest.class,
