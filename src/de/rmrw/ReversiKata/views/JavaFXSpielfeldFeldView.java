@@ -5,6 +5,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Paint;
 import de.rmrw.ReversiKata.code.IFSpielModel;
+import de.rmrw.ReversiKata.code.SpielfeldFeldZustand;
 import de.rmrw.ReversiKata.guiComponents.JavaFXSpielfeldFeld;
 import de.rmrw.ReversiKata.guiComponents.JavaFXSpielfeldFeldZustand;
 
@@ -35,9 +36,9 @@ public class JavaFXSpielfeldFeldView extends Pane implements IFSpielView {
 					ObservableValue<? extends JavaFXSpielfeldFeldZustand> observable,
 					JavaFXSpielfeldFeldZustand oldValue, JavaFXSpielfeldFeldZustand newValue) {
 				if (oldValue.equals(JavaFXSpielfeldFeldZustand.LEER_UND_BESETZBAR1) && newValue.equals(JavaFXSpielfeldFeldZustand.BESETZT1))
-					model.besetzeFeld(zeile, spalte, 1);
+					model.setzeSpielstein(1, zeile, spalte);  
 				if (oldValue.equals(JavaFXSpielfeldFeldZustand.LEER_UND_BESETZBAR2) && newValue.equals(JavaFXSpielfeldFeldZustand.BESETZT2))
-					model.besetzeFeld(zeile, spalte, 2);
+					model.setzeSpielstein(2, zeile, spalte);  
 			}    
         });
 		addSpielfeldFeldToChildren();
@@ -58,8 +59,21 @@ public class JavaFXSpielfeldFeldView extends Pane implements IFSpielView {
 
 	@Override
 	public void update() {
-		JavaFXSpielfeldFeldZustand zustand = model.getFeldZustand(zeile, spalte);
+		JavaFXSpielfeldFeldZustand zustand = uebersetzeZustand(model.getFeldZustand(zeile, spalte));
 		spielfeldFeld.setZustand(zustand);
+	}
+
+	private JavaFXSpielfeldFeldZustand uebersetzeZustand(
+			SpielfeldFeldZustand feldZustand) {
+		if (feldZustand.equals(SpielfeldFeldZustand.BESETZT1))
+			return JavaFXSpielfeldFeldZustand.BESETZT1;
+		if (feldZustand.equals(SpielfeldFeldZustand.BESETZT2))
+			return JavaFXSpielfeldFeldZustand.BESETZT2;
+		if (feldZustand.equals(SpielfeldFeldZustand.LEER_UND_BESETZBAR1))
+			return JavaFXSpielfeldFeldZustand.LEER_UND_BESETZBAR1;
+		if (feldZustand.equals(SpielfeldFeldZustand.LEER_UND_BESETZBAR2))
+			return JavaFXSpielfeldFeldZustand.LEER_UND_BESETZBAR2;
+		return JavaFXSpielfeldFeldZustand.LEER_UND_NICHT_BESETZBAR;
 	}
 
 	

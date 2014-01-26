@@ -18,6 +18,7 @@ import org.mockito.Mockito;
 import de.rmrw.ReversiKata.code.Colors;
 import de.rmrw.ReversiKata.code.Pos;
 import de.rmrw.ReversiKata.code.ReversiSpiel;
+import de.rmrw.ReversiKata.code.SpielfeldFeldZustand;
 import de.rmrw.ReversiKata.views.IFSpielView;
 import de.rmrw.ReversiKata.code.Spieler;
 import de.rmrw.ReversiKata.code.Spielfeld;
@@ -94,7 +95,7 @@ public class ReversiSpielTest {
 		woKannResult.add(new Pos(2,3));
 		when(mockSpielfeld.woKann(spieler2.getColor())).thenReturn(woKannResult);
 		
-		spyReversi.setzeSpielstein(spieler1,new Pos(2,4));
+		spyReversi.setzeSpielstein(1,2,4);
 		
 		Mockito.verify(mockView1, times(4)).update();
 		Mockito.verify(mockView2, times(4)).update();
@@ -143,5 +144,35 @@ public class ReversiSpielTest {
 		Assert.assertTrue(spieler1.isAmZug());
 	}
 	
+	@Test
+	public void testGegner() {
+		registriereSpieler(reversi1);
+		Assert.assertEquals(spieler1, reversi1.getGegner(spieler2));
+		Assert.assertEquals(spieler2, reversi1.getGegner(spieler1));
+	}
 	
+	@Test
+	public void testGetFeldZustandErsterSpielerAmZug(){
+		reversi2 = new ReversiSpiel(4,views);
+		reversi2.initSpiel();
+		registriereSpieler(reversi2); // ==> Spieler 1 (WEISS) ist am Zug
+		// Test ohne Mocking:
+		Assert.assertEquals(SpielfeldFeldZustand.BESETZT1, reversi2.getFeldZustand(1, 1));
+		Assert.assertEquals(SpielfeldFeldZustand.BESETZT2, reversi2.getFeldZustand(1, 2));
+		Assert.assertEquals(SpielfeldFeldZustand.LEER_UND_NICHT_BESETZBAR, reversi2.getFeldZustand(0, 0));
+		Assert.assertEquals(SpielfeldFeldZustand.LEER_UND_BESETZBAR1, reversi2.getFeldZustand(0, 2));
+		Assert.assertEquals(SpielfeldFeldZustand.LEER_UND_NICHT_BESETZBAR, reversi2.getFeldZustand(0, 1)); // !!!! Die Zustände hängen davon ab, wer dran ist!!!
+	}
+
+	
+	@Test
+	public void testGetFeldZustandZweiterSpielerAmZug(){
+		reversi2 = new ReversiSpiel(4,views);
+		reversi2.initSpiel();
+		registriereSpieler(reversi2); // ==> Spieler 1 (WEISS) ist am Zug
+		// Test ohne Mocking:
+		reversi2.setzeSpielstein(spieler1, new Pos(0,2));
+		Assert.assertEquals(SpielfeldFeldZustand.LEER_UND_BESETZBAR2, reversi2.getFeldZustand(0, 3)); // !!!! Die Zustände hängen davon ab, wer dran ist!!!
+	}
+
 }

@@ -268,22 +268,7 @@ public class SpielfeldTest {
 		// mocking - Spielfeld partiell/Teil 2-Ende
 	}
 
-//	@Test
-//	public void testSetzeSpielstein_1HorizDrehen_2VertDrehen_0DiagDrehen() {
-//		Spielfeld spielfeld = SpielfeldFactory
-//				.getSpielfeld4x4ForSetzeSpielstein_1HorizDrehen_2VertDrehen_0DiagDrehen();
-//		// o w b o
-//		// o o b b
-//		// o o o b
-//		// o o o w
-//		System.out.println("WICHTIGVORHER:\n" + spielfeld.toString());
-//		spielfeld.setzeSpielstein(Colors.WHITE, new Pos(0, 3));
-//		System.out.println("WICHTIGNACHHER:\n" + spielfeld.toString());
-//		Assert.assertEquals(6, spielfeld.anzahl(Colors.WHITE));
-//		Assert.assertEquals(1, spielfeld.anzahl(Colors.BLACK));
-//	}
 
-	
 
 	@Test
 	public void testSetzeSpielstein_1HorizDrehen_2VertDrehen_0DiagDrehen() {

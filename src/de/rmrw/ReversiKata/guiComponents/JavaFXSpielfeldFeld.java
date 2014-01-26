@@ -121,7 +121,6 @@ public class JavaFXSpielfeldFeld extends Pane {
 	}
 	
 	private void update() {
-		System.out.println("JavaFXSpielfeldFeld.update()");
 		if (getZustand()==JavaFXSpielfeldFeldZustand.BESETZT1)
 			kreis.setFill(spielfeldFeldProperties.getFarbeSpieler1());
 		if (getZustand()==JavaFXSpielfeldFeldZustand.BESETZT2)

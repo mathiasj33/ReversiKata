@@ -19,7 +19,6 @@ public class JavaFXSpielfeldView extends GridPane {
 		setSpielfeldFeldProperties(properties_);
 	}
 
-
 	public void init() {
 		for(int i = 0; i < model.getSize(); i++) {
 			for(int j = 0; j < model.getSize(); j++) {
@@ -31,8 +30,6 @@ public class JavaFXSpielfeldView extends GridPane {
 		}
 	}
 	
-	
-
 	public void setGridPaneColumnAndRowIndex(int i, int j,
 			JavaFXSpielfeldFeldView feld) {
 		GridPane.setColumnIndex(feld, j);
@@ -40,7 +37,8 @@ public class JavaFXSpielfeldView extends GridPane {
 	}
 
 	public void addFeldToChildren(JavaFXSpielfeldFeldView feld) {
-		subClassGetChildren().add(feld);
+		//subClassGetChildren().add(feld);
+		getChildren().add(feld);
 	}
 
 	public JavaFXSpielfeldFeldView createJavaFXSpielfeldFeldView(IFSpielModel model, int zeile, int spalte,
@@ -80,7 +78,6 @@ public class JavaFXSpielfeldView extends GridPane {
 
 
 	public void update(){
-		System.out.println("SpielfeldView.update()");
 		for (Node n : subClassGetChildren()) {
 			((JavaFXSpielfeldFeldView)n).update();
 		}

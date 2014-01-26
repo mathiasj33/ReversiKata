@@ -1,6 +1,8 @@
 package de.rmrw.ReversiKata.code;
 
 import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.Hashtable;
 import java.util.Set;
 
 import de.rmrw.ReversiKata.views.IFSpielView;
@@ -10,12 +12,11 @@ public class ReversiSpiel implements IFSpielModel {
 	private ArrayList<IFSpielView> views;
 	private int size;
 	private Spielfeld spielfeld;
-	private Spieler spieler1;
-	private Spieler spieler2;
-	private boolean ersterSpieler = true;
+	private Hashtable<Integer,Spieler> spieler = null;
 	
 	public ReversiSpiel(int size_, ArrayList<IFSpielView> views_) {
 		views = views_;
+		spieler = new Hashtable<Integer,Spieler>();
 		setSize(size_);
 		spielfeld = new Spielfeld(getSize());
 	}
@@ -35,15 +36,14 @@ public class ReversiSpiel implements IFSpielModel {
 	}
 	
 	public Spieler registriereSpieler(String name) {
-		if(ersterSpieler) {
-			spieler1 = new Spieler(name, Colors.WHITE, true);
-			ersterSpieler = false;
-			updateAllViews();
-			return spieler1;
-		}
-		spieler2 = new Spieler(name, Colors.BLACK, false);
+		if (spieler.size()>2) return null;
+		Spieler neuerSpieler = new Spieler(	name, 
+											(spieler.size()==0) ? Colors.WHITE : Colors.BLACK, 
+											(spieler.size()==0) ? true         : false
+										);
+		spieler.put(spieler.size()+1, neuerSpieler);
 		updateAllViews();
-		return spieler2;
+		return neuerSpieler;
 	}
 
 	public int getSize() {
@@ -64,21 +64,74 @@ public class ReversiSpiel implements IFSpielModel {
 	
 	public void setzeSpielstein(Spieler s, Pos p) {
 		getSpielfeld().setzeSpielstein(s.getColor(), p);
-		updateAllViews();
-		if(spieler1.isAmZug() && getSpielfeld().woKann(spieler2.getColor()).size()!=0) {
-			spieler2.setAmZug(true);
-			spieler1.setAmZug(false);
-		} 
-		else if(spieler2.isAmZug() && getSpielfeld().woKann(spieler1.getColor()).size()!=0) {
-			spieler1.setAmZug(true);
-			spieler2.setAmZug(false);
+		if (getSpielfeld().woKann(getGegner(s).getColor()).size()>0){
+			getGegner(s).setAmZug(true);
+			s.setAmZug(false);
 		}
+		updateAllViews();
 	}
 	
 	public Spieler spielerAmZug() {
-		if(spieler1.isAmZug()) return spieler1;
-		return spieler2;
+		Enumeration<Spieler> spielerEnum = spieler.elements();
+		while (spielerEnum.hasMoreElements()){
+			Spieler s = spielerEnum.nextElement();
+			if (s.isAmZug())
+				return s;
+		}
+		return null;
 	}
+
+	@Override
+	public void setzeSpielstein(int spielerNummer, int zeile, int spalte) {
+		setzeSpielstein( spieler.get(spielerNummer),new Pos(zeile,spalte));
+	}
+
+	@Override
+	public SpielfeldFeldZustand getFeldZustand(int zeile, int spalte) {
+		Pos pos = new Pos(zeile,spalte);
+		Colors colorFeld  = getSpielfeld().getColor(pos);
+		
+		for (Colors playerColor : Colors.PLAYERCOLORS) {
+			if (colorFeld.equals(playerColor))
+				if (getSpielerNummerFromColor(playerColor)==1)
+					return SpielfeldFeldZustand.BESETZT1;
+				else
+					return SpielfeldFeldZustand.BESETZT2;
+		}
+		
+		// Ab hier ist klar, dass das Feld leer ist
+		Colors colorSpielerAmZug = spielerAmZug().getColor();
+		if (getSpielfeld().esGibtEinenWegVonPosZuFarbe(pos, colorSpielerAmZug))
+			if (getSpielerNummerFromColor(colorSpielerAmZug)==1)
+				return SpielfeldFeldZustand.LEER_UND_BESETZBAR1;
+			else
+				return SpielfeldFeldZustand.LEER_UND_BESETZBAR2;
+			
+		// Ab hier ist klar, dass das Feld leer und nicht besetzbar ist 
+		return SpielfeldFeldZustand.LEER_UND_NICHT_BESETZBAR;
+	}
+	
+	private int getSpielerNummerFromColor(Colors color)
+	{
+		if (spieler.get(1).getColor().equals(color))
+			return 1;
+		if (spieler.get(2).getColor().equals(color))
+			return 2;
+		return -1;
+	}
+
+	public Spieler getGegner(Spieler spielerX) {
+		if (spielerX.equals(spieler.get(1))) return spieler.get(2);
+		if (spielerX.equals(spieler.get(2))) return spieler.get(1);
+		return null;
+	}
+
+
+	@Override
+	public void addView(IFSpielView view) {
+		views.add(view);
+	}
+
 
 
 }

@@ -15,6 +15,7 @@ public class JavaFXSpielView extends BorderPane implements IFSpielView{
 
 	
 	public JavaFXSpielView(IFSpielModel model_, JavaFXSpielfeldFeldProperties spielfeldFeldProperties_) {
+		super();
 		setModel(model_);
 		setPadding(new Insets(40, 40, 40, 40));
 		spielfeldFeldProperties = spielfeldFeldProperties_;

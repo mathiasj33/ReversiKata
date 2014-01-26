@@ -43,6 +43,8 @@ public class ReversiMainJavaFX extends Application {
 				model,
 				spielfeldFeldProperties
 				);
+		sV.init();
+		sV.update();
 		Scene s = new Scene(sV,500,500);
 		s.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		primaryStage.setScene(s);
