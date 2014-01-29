@@ -46,10 +46,6 @@ public class ReversiMainJavaFXMobile extends MobileApp {
 		sV.setPadding(new Insets(300,100,40,40));
 		sV.update();
 		return sV;
-//		Scene s = new Scene(sV,500,500);
-//		s.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
-//		primaryStage.setScene(s);
-//		primaryStage.show();
 	}
 	
 	public List<String> getInitialStylesheets() {

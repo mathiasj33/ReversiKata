@@ -37,7 +37,6 @@ public class JavaFXSpielfeldView extends GridPane {
 	}
 
 	public void addFeldToChildren(JavaFXSpielfeldFeldView feld) {
-		//subClassGetChildren().add(feld);
 		getChildren().add(feld);
 	}
 

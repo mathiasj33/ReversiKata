@@ -156,12 +156,27 @@ public class ReversiSpielTest {
 		reversi2 = new ReversiSpiel(4,views);
 		reversi2.initSpiel();
 		registriereSpieler(reversi2); // ==> Spieler 1 (WEISS) ist am Zug
+		
+		ReversiSpiel spyReversi = spy(reversi2);
+		Spielfeld mockSpielfeld = mock(Spielfeld.class);
+		doReturn(mockSpielfeld).when(spyReversi).getSpielfeld();
+		
+		when(mockSpielfeld.getColor(new Pos(1, 1))).thenReturn(Colors.WHITE);
+		when(mockSpielfeld.getColor(new Pos(1, 2))).thenReturn(Colors.BLACK);
+		when(mockSpielfeld.getColor(new Pos(0, 0))).thenReturn(Colors.VOID);
+		when(mockSpielfeld.getColor(new Pos(0, 2))).thenReturn(Colors.VOID);
+		when(mockSpielfeld.getColor(new Pos(0, 1))).thenReturn(Colors.VOID);
+
+		when(mockSpielfeld.esGibtEinenWegVonPosZuFarbe(new Pos(0, 0), Colors.WHITE)).thenReturn(false);
+		when(mockSpielfeld.esGibtEinenWegVonPosZuFarbe(new Pos(0, 2), Colors.WHITE)).thenReturn(true);
+		when(mockSpielfeld.esGibtEinenWegVonPosZuFarbe(new Pos(0, 1), Colors.WHITE)).thenReturn(false);
+		
 		// Test ohne Mocking:
-		Assert.assertEquals(SpielfeldFeldZustand.BESETZT1, reversi2.getFeldZustand(1, 1));
-		Assert.assertEquals(SpielfeldFeldZustand.BESETZT2, reversi2.getFeldZustand(1, 2));
-		Assert.assertEquals(SpielfeldFeldZustand.LEER_UND_NICHT_BESETZBAR, reversi2.getFeldZustand(0, 0));
-		Assert.assertEquals(SpielfeldFeldZustand.LEER_UND_BESETZBAR1, reversi2.getFeldZustand(0, 2));
-		Assert.assertEquals(SpielfeldFeldZustand.LEER_UND_NICHT_BESETZBAR, reversi2.getFeldZustand(0, 1)); // !!!! Die Zustände hängen davon ab, wer dran ist!!!
+		Assert.assertEquals(SpielfeldFeldZustand.BESETZT1, spyReversi.getFeldZustand(1, 1));
+		Assert.assertEquals(SpielfeldFeldZustand.BESETZT2, spyReversi.getFeldZustand(1, 2));
+		Assert.assertEquals(SpielfeldFeldZustand.LEER_UND_NICHT_BESETZBAR, spyReversi.getFeldZustand(0, 0));
+		Assert.assertEquals(SpielfeldFeldZustand.LEER_UND_BESETZBAR1, spyReversi.getFeldZustand(0, 2));
+		Assert.assertEquals(SpielfeldFeldZustand.LEER_UND_NICHT_BESETZBAR, spyReversi.getFeldZustand(0, 1)); // !!!! Die Zustände hängen davon ab, wer dran ist!!!
 	}
 
 	
@@ -170,9 +185,16 @@ public class ReversiSpielTest {
 		reversi2 = new ReversiSpiel(4,views);
 		reversi2.initSpiel();
 		registriereSpieler(reversi2); // ==> Spieler 1 (WEISS) ist am Zug
-		// Test ohne Mocking:
-		reversi2.setzeSpielstein(spieler1, new Pos(0,2));
-		Assert.assertEquals(SpielfeldFeldZustand.LEER_UND_BESETZBAR2, reversi2.getFeldZustand(0, 3)); // !!!! Die Zustände hängen davon ab, wer dran ist!!!
+		
+		ReversiSpiel spyReversi = spy(reversi2);
+		Spielfeld mockSpielfeld = mock(Spielfeld.class);
+		doReturn(mockSpielfeld).when(spyReversi).getSpielfeld();
+
+		when(mockSpielfeld.getColor(new Pos(0, 3))).thenReturn(Colors.VOID);
+		when(mockSpielfeld.esGibtEinenWegVonPosZuFarbe(new Pos(0, 3), Colors.BLACK)).thenReturn(true);
+		doReturn(spieler2).when(spyReversi).spielerAmZug();
+	
+		Assert.assertEquals(SpielfeldFeldZustand.LEER_UND_BESETZBAR2, spyReversi.getFeldZustand(0, 3)); // !!!! Die Zustände hängen davon ab, wer dran ist!!!
 	}
 
 }
