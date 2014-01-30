@@ -11,4 +11,8 @@ public interface IFSpielModel {
 	public void addView(IFSpielView view);
 	
 	public int getSize();
+	
+	public Spieler getSpieler(int i);
+	
+	public int getSteineAufFeld(Spieler s);
 }

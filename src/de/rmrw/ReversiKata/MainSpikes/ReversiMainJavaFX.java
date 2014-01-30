@@ -6,10 +6,6 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
-import org.mockito.Mockito;
-
-import de.rmrw.ReversiKata.code.IFSpielModel;
 import de.rmrw.ReversiKata.code.ReversiSpiel;
 import de.rmrw.ReversiKata.views.IFSpielView;
 import de.rmrw.ReversiKata.views.JavaFXSpielView;
@@ -45,7 +41,7 @@ public class ReversiMainJavaFX extends Application {
 				);
 		sV.init();
 		sV.update();
-		Scene s = new Scene(sV,500,500);
+		Scene s = new Scene(sV,500,560);
 		s.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		primaryStage.setScene(s);
 		primaryStage.show();

@@ -43,7 +43,7 @@ public class JavaFXSpielViewTest {
 		doReturn(mockSpielfeldView).when(spySpielView).createJavaFXSpielfeldView();
 		doReturn(mockSpielerView).when(spySpielView).createJavaFXSpielerView();
 		doNothing().when(spySpielView).subClassSetCenter(mockSpielfeldView);
-		doNothing().when(spySpielView).subClassSetLeft(mockSpielerView);
+		doNothing().when(spySpielView).subClassSetBottom(mockSpielerView);
 	}
 
 	
@@ -55,7 +55,7 @@ public class JavaFXSpielViewTest {
 		
 		verify(spySpielView, times(1)).subClassSetCenter(mockSpielfeldView);
 		verify(mockSpielfeldView, times(1)).init();
-		verify(spySpielView, times(1)).subClassSetLeft(mockSpielerView);
+		verify(spySpielView, times(1)).subClassSetBottom(mockSpielerView);
 		Assert.assertTrue(spySpielView instanceof BorderPane);
 		Assert.assertTrue(spySpielView.getJavaFXSpielfeldView() instanceof GridPane);
 		Assert.assertTrue(spySpielView.getJavaFXSpielerView() instanceof VBox);
