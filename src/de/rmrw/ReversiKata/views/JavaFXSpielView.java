@@ -28,6 +28,7 @@ public class JavaFXSpielView extends BorderPane implements IFSpielView{
 		spielerView = createJavaFXSpielerView();
 		spielerView.init();
 		subClassSetBottom(spielerView);
+		BorderPane.setMargin(spielerView, new Insets(12,12,12,12));
 		model.addView(this);
 	}
 

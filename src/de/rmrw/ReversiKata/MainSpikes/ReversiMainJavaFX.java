@@ -4,11 +4,13 @@ import java.util.ArrayList;
 
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import de.rmrw.ReversiKata.code.ReversiSpiel;
 import de.rmrw.ReversiKata.views.IFSpielView;
 import de.rmrw.ReversiKata.views.JavaFXSpielView;
+import de.rmrw.ReversiKata.views.JavaFXSpielViewMenu;
 import de.rmrw.ReversiKata.views.JavaFXSpielfeldFeldProperties;
 
 public class ReversiMainJavaFX extends Application {
@@ -41,7 +43,10 @@ public class ReversiMainJavaFX extends Application {
 				);
 		sV.init();
 		sV.update();
-		Scene s = new Scene(sV,500,560);
+		JavaFXSpielViewMenu menu = new JavaFXSpielViewMenu(model);
+		VBox vbox = new VBox();
+		vbox.getChildren().addAll(menu,sV);
+		Scene s = new Scene(vbox,500,584);
 		s.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		primaryStage.setScene(s);
 		primaryStage.show();

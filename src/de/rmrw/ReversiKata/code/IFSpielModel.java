@@ -14,5 +14,7 @@ public interface IFSpielModel {
 	
 	public Spieler getSpieler(int i);
 	
-	public int getSteineAufFeld(Spieler s);
+	public int getSteineAufFeld(int spielerNummer);
+	
+	public String getSpielerName(int spielerNummer);
 }

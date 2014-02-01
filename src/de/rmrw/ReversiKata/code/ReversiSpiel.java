@@ -138,8 +138,13 @@ public class ReversiSpiel implements IFSpielModel {
 	}
 	
 	@Override
-	public int getSteineAufFeld(Spieler s) {
-		return getSpielfeld().anzahl(s.getColor());
+	public int getSteineAufFeld(int spielerNummer) {
+		return getSpielfeld().anzahl(getSpieler(spielerNummer).getColor());
+	}
+
+	@Override
+	public String getSpielerName(int spielerNummer) {
+		return getSpieler(spielerNummer).getName();
 	}
 
 }
