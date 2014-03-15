@@ -7,14 +7,12 @@ import de.rmrw.ReversiKata.code.IFSpielModel;
 
 public class JavaFXSpielerView extends VBox {
 	
-	private IFSpielModel model;
 	private Label label1;
 	private Label label2;
 	private final static String STEINE_AUF_DEM_SPIELFELD = " Stein(e) auf dem Spielfeld";
 	
-	public JavaFXSpielerView(IFSpielModel model_, double spacing) {
+	public JavaFXSpielerView(double spacing) {
 		super(spacing);
-		setModel(model_);
 	}
 	
 	public void init() {
@@ -27,18 +25,19 @@ public class JavaFXSpielerView extends VBox {
 	}
 
 	public void update() {
-		label1.setText(model.getSpielerName(1) + ": " + model.getSteineAufFeld(1) + STEINE_AUF_DEM_SPIELFELD);
-		label2.setText(model.getSpielerName(2) + ": " + model.getSteineAufFeld(2) + STEINE_AUF_DEM_SPIELFELD);
+		label1.setText(getModel().getSpielerName(1) + ": " + getModel().getSteineAufFeld(1) + STEINE_AUF_DEM_SPIELFELD);
+		label2.setText(getModel().getSpielerName(2) + ": " + getModel().getSteineAufFeld(2) + STEINE_AUF_DEM_SPIELFELD);
+	}
+
+	public JavaFXSpielView getJavaFXSpielViewParent()
+	{
+		return (JavaFXSpielView) getParent();
 	}
 
 	public IFSpielModel getModel() {
-		return model;
+		return getJavaFXSpielViewParent().getModel();
 	}
 
-	public void setModel(IFSpielModel model) {
-		this.model = model;
-	}
-	
 	public Label getLabel1() {
 		return label1;
 	}

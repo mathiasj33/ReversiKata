@@ -14,10 +14,12 @@ import java.util.ArrayList;
 
 import javafx.scene.Node;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
 import de.rmrw.ReversiKata.code.IFSpielModel;
+import de.rmrw.ReversiKata.views.JavaFXSpielView;
 import de.rmrw.ReversiKata.views.JavaFXSpielfeldFeldProperties;
 import de.rmrw.ReversiKata.views.JavaFXSpielfeldFeldView;
 import de.rmrw.ReversiKata.views.JavaFXSpielfeldView;
@@ -41,12 +43,14 @@ public class JavaFXSpielfeldViewTest {
 		
 		mockSpielfeldFeld = mock(JavaFXSpielfeldFeldView.class);
 		mockSpielfeldFeld2= mock(JavaFXSpielfeldFeldView.class);
+		JavaFXSpielView mockSpielView = mock(JavaFXSpielView.class);
+		when(mockSpielView.getModel()).thenReturn(mockModel);
 
 		spielfeldView = new JavaFXSpielfeldView (
-				mockModel,
 				mockSpielfeldFeldProperties
 				);
 		spySpielfeldView = spy(spielfeldView);
+		doReturn(mockSpielView).when(spySpielfeldView).getJavaFXSpielViewParent();
 	}
 
 	@Test
@@ -73,6 +77,13 @@ public class JavaFXSpielfeldViewTest {
 		spySpielfeldView.update();
 		verify(mockSpielfeldFeld,times(1)).update();
 		verify(mockSpielfeldFeld2,times(1)).update();
+	}
+	
+	@Test
+	public final void testGetParent() {
+		boolean b = (spySpielfeldView.getJavaFXSpielViewParent() instanceof JavaFXSpielView);
+		Assert.assertTrue(b);
+		
 	}
 
 }

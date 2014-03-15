@@ -10,19 +10,17 @@ import de.rmrw.ReversiKata.guiComponents.JavaFXSpielfeldFeld;
 import de.rmrw.ReversiKata.guiComponents.JavaFXSpielfeldFeldZustand;
 
 
-public class JavaFXSpielfeldFeldView extends Pane implements IFSpielView {
+public class JavaFXSpielfeldFeldView extends Pane  {
 	
 	private JavaFXSpielfeldFeld spielfeldFeld = null;
-	private IFSpielModel model;
 	private int zeile;
 	private int spalte;
 	private JavaFXSpielfeldFeldProperties properties;
 	
-	public JavaFXSpielfeldFeldView(IFSpielModel model_, int zeile_, int spalte_,
+	public JavaFXSpielfeldFeldView(int zeile_, int spalte_,
 			JavaFXSpielfeldFeldProperties spielfeldFeldProperties) {
 		super();
 		this.properties 	= spielfeldFeldProperties;
-		this.model 			= model_;
 		this.zeile 			= zeile_;
 		this.spalte 		= spalte_;
 	}
@@ -36,9 +34,9 @@ public class JavaFXSpielfeldFeldView extends Pane implements IFSpielView {
 					ObservableValue<? extends JavaFXSpielfeldFeldZustand> observable,
 					JavaFXSpielfeldFeldZustand oldValue, JavaFXSpielfeldFeldZustand newValue) {
 				if (oldValue.equals(JavaFXSpielfeldFeldZustand.LEER_UND_BESETZBAR1) && newValue.equals(JavaFXSpielfeldFeldZustand.BESETZT1))
-					model.setzeSpielstein(1, zeile, spalte);  
+					getModel().setzeSpielstein(1, zeile, spalte);  
 				if (oldValue.equals(JavaFXSpielfeldFeldZustand.LEER_UND_BESETZBAR2) && newValue.equals(JavaFXSpielfeldFeldZustand.BESETZT2))
-					model.setzeSpielstein(2, zeile, spalte);  
+					getModel().setzeSpielstein(2, zeile, spalte);  
 			}    
         });
 		addSpielfeldFeldToChildren();
@@ -57,9 +55,9 @@ public class JavaFXSpielfeldFeldView extends Pane implements IFSpielView {
 		return spielfeldFeld.getCircleColor();
 	}
 
-	@Override
+	//@Override
 	public void update() {
-		JavaFXSpielfeldFeldZustand zustand = uebersetzeZustand(model.getFeldZustand(zeile, spalte));
+		JavaFXSpielfeldFeldZustand zustand = uebersetzeZustand(getModel().getFeldZustand(zeile, spalte));
 		spielfeldFeld.setZustand(zustand);
 	}
 
@@ -75,6 +73,15 @@ public class JavaFXSpielfeldFeldView extends Pane implements IFSpielView {
 			return JavaFXSpielfeldFeldZustand.LEER_UND_BESETZBAR2;
 		return JavaFXSpielfeldFeldZustand.LEER_UND_NICHT_BESETZBAR;
 	}
+
+	public JavaFXSpielfeldView getJavaFXSpielfeldViewParent() {
+		return (JavaFXSpielfeldView) this.getParent();
+	}
+
+	public IFSpielModel getModel() {
+		return getJavaFXSpielfeldViewParent().getModel();
+	}
+
 
 	
 }

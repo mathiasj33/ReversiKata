@@ -23,11 +23,11 @@ public class JavaFXSpielView extends BorderPane implements IFSpielView{
 	
 	public void init() {
 		spielfeldView = createJavaFXSpielfeldView();
-		spielfeldView.init();
 		subClassSetCenter(spielfeldView);
+		spielfeldView.init();
 		spielerView = createJavaFXSpielerView();
-		spielerView.init();
 		subClassSetBottom(spielerView);
+		spielerView.init();
 		BorderPane.setMargin(spielerView, new Insets(12,12,12,12));
 		model.addView(this);
 	}
@@ -42,11 +42,11 @@ public class JavaFXSpielView extends BorderPane implements IFSpielView{
 	}
 
 	public JavaFXSpielerView createJavaFXSpielerView() {
-		return new JavaFXSpielerView(getModel(), 10);
+		return new JavaFXSpielerView( 10);
 	}
 
 	public JavaFXSpielfeldView createJavaFXSpielfeldView() {
-		return new JavaFXSpielfeldView(getModel(), spielfeldFeldProperties);
+		return new JavaFXSpielfeldView(spielfeldFeldProperties);
 	}
 	
 	@Override

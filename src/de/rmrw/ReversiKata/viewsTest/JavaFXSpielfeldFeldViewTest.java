@@ -1,6 +1,7 @@
 package de.rmrw.ReversiKata.viewsTest;
 
 import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
@@ -14,10 +15,11 @@ import org.mockito.Mockito;
 
 import de.rmrw.ReversiKata.code.IFSpielModel;
 import de.rmrw.ReversiKata.code.SpielfeldFeldZustand;
-import de.rmrw.ReversiKata.views.JavaFXSpielfeldFeldProperties;
-import de.rmrw.ReversiKata.views.JavaFXSpielfeldFeldView;
 import de.rmrw.ReversiKata.guiComponents.JavaFXSpielfeldFeld;
 import de.rmrw.ReversiKata.guiComponents.JavaFXSpielfeldFeldZustand;
+import de.rmrw.ReversiKata.views.JavaFXSpielfeldFeldProperties;
+import de.rmrw.ReversiKata.views.JavaFXSpielfeldFeldView;
+import de.rmrw.ReversiKata.views.JavaFXSpielfeldView;
 
 
 public class JavaFXSpielfeldFeldViewTest {
@@ -32,10 +34,14 @@ public class JavaFXSpielfeldFeldViewTest {
 	
 	private JavaFXSpielfeldFeldProperties 	spielfeldFeldProperties = null;
 	private JavaFXSpielfeldFeld 			mockFeldIntern = null;
+	private JavaFXSpielfeldView 			mockSpielfeldView = null;
 	
 	@Before
 	public void setUp() throws Exception {
 		mockModel = mock(IFSpielModel.class);
+		mockSpielfeldView  = mock(JavaFXSpielfeldView.class);
+		when(mockSpielfeldView.getModel()).thenReturn(mockModel);
+		
 		spielfeldFeldProperties = new JavaFXSpielfeldFeldProperties(50,            // Groesse
 																	GRUNDFARBE,   // Grundfarbe
 																	FARBESPIELER1,    // Farbe Spieler1
@@ -43,15 +49,16 @@ public class JavaFXSpielfeldFeldViewTest {
 																	ANGEDEUTETEFARBESPIELER1, // Angedeutete Farbe Sp1
 																	ANGEDEUTETEFARBESPIELER2  // Angedeutete Farbe Sp2
 																	);
-		JavaFXSpielfeldFeldView temp = new JavaFXSpielfeldFeldView(mockModel,     // Modell zum View
+		JavaFXSpielfeldFeldView temp = new JavaFXSpielfeldFeldView(
 				1,             // Zeile
 				0,             // Spalte
 				spielfeldFeldProperties
 				);
 		spyFeld = spy(temp);
 		mockFeldIntern = mock(JavaFXSpielfeldFeld.class);
-		Mockito.doReturn(mockFeldIntern).when(spyFeld).createJavaFXSpielfeldFeld();
+		doReturn(mockFeldIntern).when(spyFeld).createJavaFXSpielfeldFeld();
 		doNothing().when(spyFeld).addSpielfeldFeldToChildren();
+		doReturn(mockSpielfeldView).when(spyFeld).getJavaFXSpielfeldViewParent();
 		spyFeld.init();
 	}
 
@@ -71,13 +78,15 @@ public class JavaFXSpielfeldFeldViewTest {
 	
 	@Test
 	public final void testComponentChanges(){
-		JavaFXSpielfeldFeldView spyFeld2 = spy(new JavaFXSpielfeldFeldView(mockModel,     // Modell zum View
+		JavaFXSpielfeldFeldView spyFeld2 = spy(new JavaFXSpielfeldFeldView(/*mockModel,     // Modell zum View*/
 				2,             // Zeile
 				0,             // Spalte
 				spielfeldFeldProperties
 				));
 		JavaFXSpielfeldFeld feldIntern2 = new JavaFXSpielfeldFeld(spielfeldFeldProperties);
 		Mockito.doReturn(feldIntern2).when(spyFeld2).createJavaFXSpielfeldFeld();
+		doNothing().when(spyFeld2).addSpielfeldFeldToChildren();
+		doReturn(mockSpielfeldView).when(spyFeld2).getJavaFXSpielfeldViewParent();
 		spyFeld2.init();
 		
 		when(mockModel.getFeldZustand(2, 0)).thenReturn(SpielfeldFeldZustand.LEER_UND_BESETZBAR2);
@@ -86,5 +95,12 @@ public class JavaFXSpielfeldFeldViewTest {
 		feldIntern2.onMousePressed();
 		verify(mockModel).setzeSpielstein(2, 2, 0);
 	}
-	
+
+	@Test
+	public final void testGetParent() {
+		boolean b = (spyFeld.getJavaFXSpielfeldViewParent() instanceof JavaFXSpielfeldView);
+		Assert.assertTrue(b);
+		
+	}
+
 }

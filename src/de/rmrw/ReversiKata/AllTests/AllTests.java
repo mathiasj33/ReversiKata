@@ -12,6 +12,7 @@ import de.rmrw.ReversiKata.codeTest.SpielfeldIteratorTest;
 import de.rmrw.ReversiKata.codeTest.SpielfeldTest;
 import de.rmrw.ReversiKata.guiComponentsTest.JavaFXSpielfeldFeldTest;
 import de.rmrw.ReversiKata.guiComponentsTest.JavaFXSpielfeldFeldZustandTest;
+import de.rmrw.ReversiKata.viewsTest.JavaFXSpielViewMenuTest;
 import de.rmrw.ReversiKata.viewsTest.JavaFXSpielViewTest;
 import de.rmrw.ReversiKata.viewsTest.JavaFXSpielerViewTest;
 import de.rmrw.ReversiKata.viewsTest.JavaFXSpielfeldFeldViewTest;
@@ -32,6 +33,7 @@ import de.rmrw.ReversiKata.viewsTest.JavaFXSpielfeldViewTest;
 	JavaFXSpielfeldFeldViewTest.class,
 	JavaFXSpielViewTest.class,
 	JavaFXSpielfeldViewTest.class,
-	JavaFXSpielerViewTest.class
+	JavaFXSpielerViewTest.class,
+	JavaFXSpielViewMenuTest.class
 	} )
 public final class AllTests {}

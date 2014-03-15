@@ -1,32 +1,132 @@
 package de.rmrw.ReversiKata.views;
 
 import de.rmrw.ReversiKata.code.IFSpielModel;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 
 public class JavaFXSpielViewMenu extends MenuBar {
 
-	private Menu menuDatei=null;
-	private Menu menuSpieler=null;
-	private MenuItem itemDateiNeu=null;
-	private MenuItem itemDateiOeffnen=null;
-	private MenuItem itemDateiSpeichern=null;
-	private MenuItem itemSpielerUmbenennen=null;
-	
 	private IFSpielModel model;
 	
 	public JavaFXSpielViewMenu(IFSpielModel model_)
 	{
 		model = model_;
-		menuDatei = new Menu("Datei");
-		menuSpieler = new Menu("Spieler");
-		itemDateiNeu = new MenuItem("Neu");
-		itemDateiOeffnen = new MenuItem("Öffnen...");
-		itemDateiSpeichern = new MenuItem("Speichern...");
-		itemSpielerUmbenennen = new MenuItem("Umbenennen...");
-		this.getMenus().addAll(menuDatei,menuSpieler);
-		menuDatei.getItems().addAll(itemDateiNeu, itemDateiOeffnen, itemDateiSpeichern);
-		menuSpieler.getItems().add(itemSpielerUmbenennen);
+		
+		addMenuDatei();
+
+		addMenuBearbeiten();
+
+		addMenuSpieler();
 	}
+
+	private void addMenuSpieler() {
+		Menu menuSpieler = new Menu("Spieler");
+		MenuItem itemSpielerUmbenennen = new MenuItem("Namen ändern...");
+		this.getMenus().add(menuSpieler);
+		menuSpieler.getItems().add(itemSpielerUmbenennen);
+		itemSpielerUmbenennen.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent arg0) {
+				onItemSpielerUmbenennen();
+				
+			}});
+	}
+
+	public void onItemSpielerUmbenennen() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void addMenuBearbeiten() {
+		Menu menuBearbeiten = new Menu("Bearbeiten");
+		MenuItem itemBearbeitenRueckgaengig = new MenuItem("Rückgängig");
+		MenuItem itemBearbeitenWiederholen = new MenuItem("Wiederholen");
+		this.getMenus().add(menuBearbeiten);
+		menuBearbeiten.getItems().addAll(itemBearbeitenRueckgaengig, itemBearbeitenWiederholen);
+
+		itemBearbeitenRueckgaengig.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent arg0) {
+				onItemBearbeitenRueckgaengig();
+				
+			}});
+
+		itemBearbeitenWiederholen.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent arg0) {
+				onItemBearbeitenWiederholen();
+				
+			}});
+
+	}
+
+	public void onItemBearbeitenWiederholen() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void onItemBearbeitenRueckgaengig() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void addMenuDatei() {
+		Menu menuDatei = new Menu("Datei");
+		MenuItem itemDateiNeu = new MenuItem("Neu");
+		MenuItem itemDateiOeffnen = new MenuItem("Öffnen...");
+		MenuItem itemDateiSpeichern = new MenuItem("Speichern...");
+		this.getMenus().add(menuDatei);
+		menuDatei.getItems().addAll(itemDateiNeu, itemDateiOeffnen, itemDateiSpeichern);
+		
+		itemDateiNeu.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent arg0) {
+				onItemDateiNeu();
+				
+			}});
+
+		itemDateiOeffnen.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent arg0) {
+				onItemDateiOeffnen();
+				
+			}});
+
+		itemDateiSpeichern.setOnAction(new EventHandler<ActionEvent>(){
+			@Override
+			public void handle(ActionEvent arg0) {
+				onItemDateiSpeichern();
+				
+			}});
+}
+
+	public void onItemDateiNeu() {
+		// TODO Auto-generated method stub
+	}
+	
+	public void onItemDateiOeffnen() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	private void onItemDateiSpeichern() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	
+	
+	
+	public IFSpielModel getModel() {
+		return model;
+	}
+
+	public void setModel(IFSpielModel model) {
+		this.model = model;
+	}
+	
+	
 }

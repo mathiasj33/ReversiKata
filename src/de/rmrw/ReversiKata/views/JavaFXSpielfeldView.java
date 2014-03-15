@@ -8,20 +8,18 @@ import de.rmrw.ReversiKata.code.IFSpielModel;
 
 public class JavaFXSpielfeldView extends GridPane {
 	
-	private IFSpielModel model 							= null;
 	private JavaFXSpielfeldFeldProperties properties 	= null;
-
-	public JavaFXSpielfeldView(IFSpielModel model_, JavaFXSpielfeldFeldProperties properties_) {
+	
+	public JavaFXSpielfeldView( JavaFXSpielfeldFeldProperties properties_) {
 		super();
 		this.setHgap(4);
 		this.setVgap(4);
-		setModel(model_);
 		setSpielfeldFeldProperties(properties_);
 	}
 
 	public void init() {
-		for(int i = 0; i < model.getSize(); i++) {
-			for(int j = 0; j < model.getSize(); j++) {
+		for(int i = 0; i < getModel().getSize(); i++) {
+			for(int j = 0; j < getModel().getSize(); j++) {
 				JavaFXSpielfeldFeldView feld = 
 						createJavaFXSpielfeldFeldView(getModel(), i, j, getSpielfeldFeldProperties());
 				addFeldToChildren(feld);
@@ -43,7 +41,7 @@ public class JavaFXSpielfeldView extends GridPane {
 	public JavaFXSpielfeldFeldView createJavaFXSpielfeldFeldView(IFSpielModel model, int zeile, int spalte,
 			JavaFXSpielfeldFeldProperties properties) {
 		JavaFXSpielfeldFeldView spielfeldFeldView =
-			new JavaFXSpielfeldFeldView(model,         // Modell zum View
+			new JavaFXSpielfeldFeldView(
 								zeile,             
 								spalte,             
 								properties
@@ -53,15 +51,8 @@ public class JavaFXSpielfeldView extends GridPane {
 	}
 	
 	public IFSpielModel getModel() {
-		return model;
+		return getJavaFXSpielViewParent().getModel();
 	}
-
-
-
-	private void setModel(IFSpielModel model) {
-		this.model = model;
-	}
-
 
 
 	public JavaFXSpielfeldFeldProperties getSpielfeldFeldProperties() {
@@ -87,6 +78,10 @@ public class JavaFXSpielfeldView extends GridPane {
 		ArrayList<Node> al = new ArrayList<Node>();
 		al.addAll(super.getChildren());
 		return al;
+	}
+
+	public JavaFXSpielView getJavaFXSpielViewParent() {
+		return (JavaFXSpielView) this.getParent();
 	}
 
 }
