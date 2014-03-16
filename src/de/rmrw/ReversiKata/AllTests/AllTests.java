@@ -39,5 +39,6 @@ import de.rmrw.ReversiKata.viewsTest.JavaFXSpielfeldViewTest;
 	JavaFXSpielerViewTest.class,
 	JavaFXSpielViewMenuTest.class,
 	JavaFXSpielRahmenViewTest.class
+	
 	} )
 public final class AllTests {}
