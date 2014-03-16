@@ -1,17 +1,17 @@
 package de.rmrw.ReversiKata.views;
 
-import de.rmrw.ReversiKata.code.IFSpielModel;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import de.rmrw.ReversiKata.code.IFSpielRahmenModel;
 
 public class JavaFXSpielViewMenu extends MenuBar {
 
-	private IFSpielModel model;
+	private IFSpielRahmenModel model;
 	
-	public JavaFXSpielViewMenu(IFSpielModel model_)
+	public JavaFXSpielViewMenu(IFSpielRahmenModel model_)
 	{
 		model = model_;
 		
@@ -104,7 +104,12 @@ public class JavaFXSpielViewMenu extends MenuBar {
 }
 
 	public void onItemDateiNeu() {
-		// TODO Auto-generated method stub
+		getModel().neuesSpiel();
+		JavaFXSpielRahmenView parent = (JavaFXSpielRahmenView)this.getParent();
+		// Model und Views wieder richtig zuordnen (unschön)
+		parent.getSpielView().setModel(getModel().getSpiel());
+		getModel().getSpiel().addView(parent.getSpielView());
+		parent.update();
 	}
 	
 	public void onItemDateiOeffnen() {
@@ -120,11 +125,11 @@ public class JavaFXSpielViewMenu extends MenuBar {
 	
 	
 	
-	public IFSpielModel getModel() {
+	public IFSpielRahmenModel getModel() {
 		return model;
 	}
 
-	public void setModel(IFSpielModel model) {
+	public void setModel(IFSpielRahmenModel model) {
 		this.model = model;
 	}
 	

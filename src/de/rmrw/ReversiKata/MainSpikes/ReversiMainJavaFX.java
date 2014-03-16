@@ -1,52 +1,23 @@
 package de.rmrw.ReversiKata.MainSpikes;
 
-import java.util.ArrayList;
-
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-import de.rmrw.ReversiKata.code.ReversiSpiel;
-import de.rmrw.ReversiKata.views.IFSpielView;
-import de.rmrw.ReversiKata.views.JavaFXSpielView;
-import de.rmrw.ReversiKata.views.JavaFXSpielViewMenu;
-import de.rmrw.ReversiKata.views.JavaFXSpielfeldFeldProperties;
+import de.rmrw.ReversiKata.code.ReversiSpielRahmen;
+import de.rmrw.ReversiKata.views.JavaFXSpielRahmenView;
 
 public class ReversiMainJavaFX extends Application {
 	
-	private static final Color ANGEDEUTETEFARBESPIELER2 = Color.LIGHTCORAL;
-	private static final Color ANGEDEUTETEFARBESPIELER1 = Color.LIGHTBLUE;
-	private static final Color FARBESPIELER2 = Color.RED;
-	private static final Color FARBESPIELER1 = Color.BLUE;
-	private static final Color GRUNDFARBE = Color.BEIGE;
-
 	@Override
 	public void start(Stage primaryStage) {
-		ReversiSpiel model = new ReversiSpiel(8, new ArrayList<IFSpielView>());
-		model.initSpiel();
-		model.registriereSpieler("Mathias");
-		model.registriereSpieler("Robert");
+		ReversiSpielRahmen spielRahmen = new ReversiSpielRahmen();
+		JavaFXSpielRahmenView rahmenView = new JavaFXSpielRahmenView(spielRahmen);
+		spielRahmen.addView(rahmenView);
+		spielRahmen.neuesSpiel();
+		rahmenView.init();
+		rahmenView.update();
 		
-		JavaFXSpielfeldFeldProperties spielfeldFeldProperties = new JavaFXSpielfeldFeldProperties(
-				50,            // Groesse
-				GRUNDFARBE,   // Grundfarbe
-				FARBESPIELER1,    // Farbe Spieler1
-				FARBESPIELER2,     // Farbe Spieler2
-				ANGEDEUTETEFARBESPIELER1, // Angedeutete Farbe Sp1
-				ANGEDEUTETEFARBESPIELER2  // Angedeutete Farbe Sp2
-				);
-
-		JavaFXSpielView sV = new JavaFXSpielView(
-				model,
-				spielfeldFeldProperties
-				);
-		sV.init();
-		sV.update();
-		JavaFXSpielViewMenu menu = new JavaFXSpielViewMenu(model);
-		VBox vbox = new VBox();
-		vbox.getChildren().addAll(menu,sV);
-		Scene s = new Scene(vbox,500,584);
+		Scene s = new Scene(rahmenView,500,584);
 		s.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		primaryStage.setScene(s);
 		primaryStage.show();

@@ -9,6 +9,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import de.rmrw.ReversiKata.code.IFSpielModel;
+import de.rmrw.ReversiKata.code.IFSpielRahmenModel;
 import de.rmrw.ReversiKata.views.JavaFXSpielViewMenu;
 
 public class JavaFXSpielViewMenuTest {
@@ -18,11 +19,11 @@ public class JavaFXSpielViewMenuTest {
 	private static final String DATEI = "Datei";
 
 	private JavaFXSpielViewMenu menuBar = null;
-	private IFSpielModel model = null;
+	private IFSpielRahmenModel model = null;
 
 	@Before
 	public void setUp() throws Exception {
-		 model = Mockito.mock(IFSpielModel.class);
+		 model = Mockito.mock(IFSpielRahmenModel.class);
 		 menuBar = new JavaFXSpielViewMenu(model);
 	}
 
