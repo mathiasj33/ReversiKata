@@ -1,10 +1,14 @@
 package de.rmrw.ReversiKata.views;
 
+import java.io.File;
+
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 import de.rmrw.ReversiKata.code.IFSpielRahmenModel;
 
 public class JavaFXSpielViewMenu extends MenuBar {
@@ -111,7 +115,11 @@ public class JavaFXSpielViewMenu extends MenuBar {
 	}
 	
 	public void onItemDateiOeffnen() {
-		getModel().ladeSpiel("TestSpiel.xml");
+		FileChooser fileChooser = new FileChooser();
+		Stage stage = (Stage) this.getScene().getWindow();
+		File file = fileChooser.showOpenDialog(stage);
+		
+		getModel().ladeSpiel(file.getPath());
 		JavaFXSpielRahmenView parent = getJavaFXSpielRahmenViewParent();
 		// Model und Views wieder richtig zuordnen (unschön)
 		parent.getSpielView().setModel(getModel().getSpiel());
@@ -120,7 +128,13 @@ public class JavaFXSpielViewMenu extends MenuBar {
 	}
 
 	private void onItemDateiSpeichern() {
-		getModel().spielSpeichern("TestSpiel.xml");
+		FileChooser fileChooser = new FileChooser();
+		Stage stage = (Stage) this.getScene().getWindow();
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("xml files (*.xml)", "*.xml");
+        fileChooser.getExtensionFilters().add(extFilter);
+		
+		File file = fileChooser.showSaveDialog(stage);
+		getModel().spielSpeichern(file.getPath());
 		
 	}
 	
