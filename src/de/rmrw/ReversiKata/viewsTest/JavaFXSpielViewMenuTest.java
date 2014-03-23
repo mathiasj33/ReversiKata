@@ -6,10 +6,7 @@ import javafx.scene.control.MenuItem;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.Mockito;
 
-import de.rmrw.ReversiKata.code.IFSpielModel;
-import de.rmrw.ReversiKata.code.IFSpielRahmenModel;
 import de.rmrw.ReversiKata.views.JavaFXSpielViewMenu;
 
 public class JavaFXSpielViewMenuTest {
@@ -19,12 +16,10 @@ public class JavaFXSpielViewMenuTest {
 	private static final String DATEI = "Datei";
 
 	private JavaFXSpielViewMenu menuBar = null;
-	private IFSpielRahmenModel model = null;
 
 	@Before
 	public void setUp() throws Exception {
-		 model = Mockito.mock(IFSpielRahmenModel.class);
-		 menuBar = new JavaFXSpielViewMenu(model);
+		 menuBar = new JavaFXSpielViewMenu();
 	}
 
 	@Test
@@ -46,7 +41,6 @@ public class JavaFXSpielViewMenuTest {
 		Assert.assertEquals(1, getMenuFromText(menuBar, SPIELER).getItems().size());
 		Assert.assertNotNull(getMenuItemFromText(menuBar, SPIELER, "Namen ändern..."));
 		
-		Assert.assertEquals(menuBar.getModel(), model);
 	}
 
 	private Menu getMenuFromText(JavaFXSpielViewMenu menuBar_, String s) {

@@ -9,11 +9,9 @@ import de.rmrw.ReversiKata.code.IFSpielRahmenModel;
 
 public class JavaFXSpielViewMenu extends MenuBar {
 
-	private IFSpielRahmenModel model;
-	
-	public JavaFXSpielViewMenu(IFSpielRahmenModel model_)
+
+	public JavaFXSpielViewMenu()
 	{
-		model = model_;
 		
 		addMenuDatei();
 
@@ -126,12 +124,13 @@ public class JavaFXSpielViewMenu extends MenuBar {
 	
 	
 	public IFSpielRahmenModel getModel() {
-		return model;
+		return getJavaFXSpielRahmenViewParent().getRahmenModel();
 	}
 
-	public void setModel(IFSpielRahmenModel model) {
-		this.model = model;
+	private JavaFXSpielRahmenView getJavaFXSpielRahmenViewParent(){
+		return (JavaFXSpielRahmenView) this.getParent();
 	}
+	
 	
 	
 }

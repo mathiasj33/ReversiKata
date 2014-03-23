@@ -8,7 +8,6 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 import de.rmrw.ReversiKata.code.IFSpielRahmenModel;
-import de.rmrw.ReversiKata.views.IFSpielView;
 import de.rmrw.ReversiKata.views.JavaFXSpielRahmenView;
 import de.rmrw.ReversiKata.views.JavaFXSpielView;
 import de.rmrw.ReversiKata.views.JavaFXSpielViewMenu;
