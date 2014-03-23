@@ -12,7 +12,7 @@ public class ReversiMainConsole {
 	static final int spielfeldgroesse=8;
 	private Spielfeld spielfeld;
 	public ReversiMainConsole() {
-		spielfeld = new Spielfeld(spielfeldgroesse);
+		spielfeld = new Spielfeld(); spielfeld.init(spielfeldgroesse);
 		spielfeld.setForInit(Colors.WHITE, new Pos(3,3));
 		spielfeld.setForInit(Colors.WHITE, new Pos(4,4));
 		spielfeld.setForInit(Colors.BLACK, new Pos(3,4));

@@ -40,8 +40,8 @@ public class ReversiSpielTest {
 		views.add(mockView1);
 		mockView2 = mock(IFSpielView.class);
 		views.add(mockView2);
-		reversi1 = new ReversiSpiel(8,views); // besetzt die mittleren Felder und ruft schon 1mal update für alle Views auf
-		reversi1.initSpiel();
+		reversi1 = new ReversiSpiel(); 
+		reversi1.initSpiel(8,views);// besetzt die mittleren Felder und ruft schon 1mal update für alle Views auf
 	}
 
 	private void registriereSpieler(ReversiSpiel reversi) {
@@ -104,22 +104,23 @@ public class ReversiSpielTest {
 
 	@Test
 	public final void testKleineresSpielfeldGeradeGroesse() {
-		reversi2 = new ReversiSpiel(4,views);
-		subTestKleineresSpielfeld();
+		reversi2 = new ReversiSpiel();
+		subTestKleineresSpielfeld(4);
 	}
 
 	@Test
 	public final void testKleineresSpielfeldUngeradeGroesse() {
-		reversi2 = new ReversiSpiel(5,views);
-		subTestKleineresSpielfeld();
+		reversi2 = new ReversiSpiel();
+		subTestKleineresSpielfeld(5);
 	}
 
-	private void subTestKleineresSpielfeld() {
+	private void subTestKleineresSpielfeld(int size) {
 		Spielfeld mockSpielfeld = mock(Spielfeld.class);
+		when(mockSpielfeld.getSize()).thenReturn(size);
 		ReversiSpiel spyReversi = spy(reversi2);
 		doReturn(mockSpielfeld).when(spyReversi).getSpielfeld();
 
-		spyReversi.initSpiel();
+		spyReversi.initSpiel(size,views);
 
 		Mockito.verify(mockSpielfeld).setForInit(Colors.WHITE, new Pos(1,1));
 		Mockito.verify(mockSpielfeld).setForInit(Colors.WHITE, new Pos(2,2));
@@ -129,8 +130,8 @@ public class ReversiSpielTest {
 	
 	@Test
 	public final void testZweimalGleicherSpielerDran() {
-		reversi2 = new ReversiSpiel(4,views);
-		reversi2.initSpiel();
+		reversi2 = new ReversiSpiel();
+		reversi2.initSpiel(4,views);
 		registriereSpieler(reversi2);
 		ReversiSpiel spyReversi = spy(reversi2);
 		Spielfeld mockSpielfeld = mock(Spielfeld.class);
@@ -153,8 +154,8 @@ public class ReversiSpielTest {
 	
 	@Test
 	public void testGetFeldZustandErsterSpielerAmZug(){
-		reversi2 = new ReversiSpiel(4,views);
-		reversi2.initSpiel();
+		reversi2 = new ReversiSpiel();
+		reversi2.initSpiel(4,views);
 		registriereSpieler(reversi2); // ==> Spieler 1 (WEISS) ist am Zug
 		
 		ReversiSpiel spyReversi = spy(reversi2);
@@ -182,8 +183,8 @@ public class ReversiSpielTest {
 	
 	@Test
 	public void testGetFeldZustandZweiterSpielerAmZug(){
-		reversi2 = new ReversiSpiel(4,views);
-		reversi2.initSpiel();
+		reversi2 = new ReversiSpiel();
+		reversi2.initSpiel(4,views);
 		registriereSpieler(reversi2); // ==> Spieler 1 (WEISS) ist am Zug
 		
 		ReversiSpiel spyReversi = spy(reversi2);

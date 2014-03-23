@@ -17,7 +17,7 @@ public class SpielfeldIteratorTest {
 	
 	@Before
 	public void setUp() {
-		sf = new Spielfeld(4);
+		sf = new Spielfeld(); sf.init(4);
 	}
 	
 	@Test

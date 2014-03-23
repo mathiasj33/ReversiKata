@@ -10,4 +10,8 @@ public interface IFSpielRahmenModel {
 
 	void addView(IFSpielRahmenView spielRahmenView);
 
+	void spielSpeichern(String string);
+
+	void ladeSpiel(String string);
+
 }

@@ -103,7 +103,7 @@ public class JavaFXSpielViewMenu extends MenuBar {
 
 	public void onItemDateiNeu() {
 		getModel().neuesSpiel();
-		JavaFXSpielRahmenView parent = (JavaFXSpielRahmenView)this.getParent();
+		JavaFXSpielRahmenView parent = getJavaFXSpielRahmenViewParent();
 		// Model und Views wieder richtig zuordnen (unschön)
 		parent.getSpielView().setModel(getModel().getSpiel());
 		getModel().getSpiel().addView(parent.getSpielView());
@@ -111,12 +111,16 @@ public class JavaFXSpielViewMenu extends MenuBar {
 	}
 	
 	public void onItemDateiOeffnen() {
-		// TODO Auto-generated method stub
-		
+		getModel().ladeSpiel("TestSpiel.xml");
+		JavaFXSpielRahmenView parent = getJavaFXSpielRahmenViewParent();
+		// Model und Views wieder richtig zuordnen (unschön)
+		parent.getSpielView().setModel(getModel().getSpiel());
+		getModel().getSpiel().addView(parent.getSpielView());
+		parent.update();
 	}
 
 	private void onItemDateiSpeichern() {
-		// TODO Auto-generated method stub
+		getModel().spielSpeichern("TestSpiel.xml");
 		
 	}
 	

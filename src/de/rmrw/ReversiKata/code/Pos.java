@@ -5,6 +5,8 @@ public class Pos implements Comparable<Pos> {
 	private int zeile;
 	private int spalte;
 	
+	public Pos(){}
+	
 	public Pos(int zeile, int spalte) {
 		this.setZeile(zeile);
 		this.setSpalte(spalte);

@@ -10,7 +10,9 @@ public class Spielfeld {
 	private int size;
 	private TreeMap<Pos,Colors> map = new TreeMap<Pos,Colors>();
 	
-	public Spielfeld(int s) {
+	public Spielfeld(){}
+	
+	public void init(int s) {
 		size = s;
 		for(int i = 0; i < size; i++) {
 			for(int j = 0; j < size; j++) {
@@ -41,6 +43,14 @@ public class Spielfeld {
 			}
 		}
 		return s;
+	}
+
+	public TreeMap<Pos, Colors> getMap() {
+		return map;
+	}
+
+	public void setMap(TreeMap<Pos, Colors> map) {
+		this.map = map;
 	}
 
 	public boolean esGibtEinenWegVonPosZuFarbe(Pos pos, Colors color) {
@@ -141,4 +151,11 @@ public class Spielfeld {
 		return i;
 	}
 
+	public int getSize() {
+		return size;
+	}
+
+	public void setSize(int size_) {
+		size = size_;
+	}
 }

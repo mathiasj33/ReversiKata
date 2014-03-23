@@ -27,10 +27,6 @@ public class JavaFXSpielRahmenView extends VBox implements IFSpielRahmenView {
 		return rahmenModel;
 	}
 
-	private void setRahmenModel(IFSpielRahmenModel rahmenModel) {
-		this.rahmenModel = rahmenModel;
-	}
-
 	public void init() {
 		JavaFXSpielfeldFeldProperties spielfeldFeldProperties = new JavaFXSpielfeldFeldProperties(
 				50,            // Groesse

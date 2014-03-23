@@ -18,7 +18,7 @@ public class LineIteratorTest {
 	
 	@Before
 	public void setUp() {
-		sf = new Spielfeld(4);
+		sf = new Spielfeld(); sf.init(4);
 	}
 	
 	// Spalte:       0  1  2  3

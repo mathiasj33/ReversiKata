@@ -11,7 +11,7 @@ public class SpielfeldFactory {
 	public static Spielfeld getSpielfeld2x2ForTestGetColorAndForToString() {
 		// b  o
 		// o  w
-		sp = new Spielfeld(2);
+		sp = new Spielfeld(); sp.init(2);
 		sp.setForInit(Colors.BLACK, new Pos(0,0));
 		sp.setForInit(Colors.VOID, new Pos(1,0));
 		sp.setForInit(Colors.WHITE, new Pos(1,1));
@@ -21,7 +21,7 @@ public class SpielfeldFactory {
 	public static Spielfeld getSpielfeld2x2ForWoKannSchwarz() {
 		// b  w
 		// o  o
-		sp = new Spielfeld(2);
+		sp = new Spielfeld(); sp.init(2);
 		sp.setForInit(Colors.BLACK, new Pos(0,0));
 		sp.setForInit(Colors.WHITE, new Pos(0,1));
 		return sp;
@@ -40,7 +40,7 @@ public class SpielfeldFactory {
 		//o  o  b
 		//o  o  o
 		//o  o  o
-		sp = new Spielfeld(3);
+		sp = new Spielfeld(); sp.init(3);
 		sp.setForInit(Colors.BLACK, new Pos(0,2));
 		return sp;
 	}
@@ -61,7 +61,7 @@ public class SpielfeldFactory {
 		//w  o  o  o
 		//o  o  o  o
 		//o  o  o  o
-		sp = new Spielfeld(4);
+		sp = new Spielfeld(); sp.init(4);
 		sp.setForInit(Colors.BLACK, new Pos(0,0));
 		sp.setForInit(Colors.WHITE, new Pos(1,0));
 		return sp;
@@ -83,7 +83,7 @@ public class SpielfeldFactory {
 		//o  o  w  o
 		//o  o  o  o
 		//b  o  o  o
-		sp = new Spielfeld(4);
+		sp = new Spielfeld(); sp.init(4);
 		sp.setForInit(Colors.BLACK, new Pos(3,0));
 		sp.setForInit(Colors.WHITE, new Pos(1,2));
 		return sp;
@@ -91,12 +91,12 @@ public class SpielfeldFactory {
 
 
 	public static Spielfeld getSpielfeld2x2ForContains() {
-		sp = new Spielfeld(2);
+		sp = new Spielfeld(); sp.init(2);
 		return sp;
 	}
 
 	public static Spielfeld getSpielfeld4x4ForSetzeSpielstein_1HorizDrehen_2VertDrehen_0DiagDrehen() {
-		sp = new Spielfeld(4);
+		sp = new Spielfeld(); sp.init(4);
 		// o  w  b  o 
 		// o  o  b  b
 		// o  o  o  b
@@ -111,7 +111,7 @@ public class SpielfeldFactory {
 	}
 
 	public static Spielfeld getSpielfeld3x3ForSetzeSpielstein_Nur1HorizDrehen() {
-		sp = new Spielfeld(3);
+		sp = new Spielfeld(); sp.init(3);
 //		 o b w
 //		 o o o
 //		 w o o
@@ -127,7 +127,7 @@ public class SpielfeldFactory {
 //		o o o o o
 //		o o o o o
 //		o o o o o
-		sp = new Spielfeld(5);
+		sp = new Spielfeld(); sp.init(5);
 		for (int i=1; i<4; i++) 
 			sp.setForInit(Colors.WHITE, new Pos(0,i));
 		sp.setForInit(Colors.BLACK, new Pos(0,4));
@@ -135,7 +135,7 @@ public class SpielfeldFactory {
 	}
 	
 	public static Spielfeld createDirectionsIteratorSpielfeld() {
-		sp = new Spielfeld(3);
+		sp = new Spielfeld(); sp.init(3);
 		return sp;
 	}
 

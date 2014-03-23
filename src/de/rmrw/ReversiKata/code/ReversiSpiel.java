@@ -5,23 +5,25 @@ import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Set;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import de.rmrw.ReversiKata.views.IFSpielView;
 
+@XmlRootElement
 public class ReversiSpiel implements IFSpielModel {
 	
-	private ArrayList<IFSpielView> views;
-	private int size;
+	private ArrayList<IFSpielView> views=new ArrayList<IFSpielView>();
 	private Spielfeld spielfeld;
-	private Hashtable<Integer,Spieler> spieler = null;
+	private Hashtable<Integer,Spieler> spielerSet = null;
 	
-	public ReversiSpiel(int size_, ArrayList<IFSpielView> views_) {
-		views = views_;
-		spieler = new Hashtable<Integer,Spieler>();
-		setSize(size_);
-		spielfeld = new Spielfeld(getSize());
+	public ReversiSpiel() {
 	}
 
-	public void initSpiel() {
+	public void initSpiel(int size_, ArrayList<IFSpielView> views_) {
+		views = views_;
+		spielerSet = new Hashtable<Integer,Spieler>();
+		spielfeld = new Spielfeld();
+		spielfeld.init(size_);
 		getSpielfeld().setForInit(Colors.WHITE, new Pos(getSize()/2-1,getSize()/2-1));
 		getSpielfeld().setForInit(Colors.BLACK, new Pos(getSize()/2,getSize()/2-1));
 		getSpielfeld().setForInit(Colors.BLACK, new Pos(getSize()/2-1,getSize()/2));
@@ -36,28 +38,38 @@ public class ReversiSpiel implements IFSpielModel {
 	}
 	
 	public Spieler registriereSpieler(String name) {
-		if (spieler.size()>2) return null;
-		Spieler neuerSpieler = new Spieler(	name, 
-											(spieler.size()==0) ? Colors.WHITE : Colors.BLACK, 
-											(spieler.size()==0) ? true         : false
+		if (spielerSet.size()>2) return null;
+		Spieler neuerSpieler = new Spieler();
+		neuerSpieler.init(	name, 
+											(spielerSet.size()==0) ? Colors.WHITE : Colors.BLACK, 
+											(spielerSet.size()==0) ? true         : false
 										);
-		spieler.put(spieler.size()+1, neuerSpieler);
+		spielerSet.put(spielerSet.size()+1, neuerSpieler);
 		updateAllViews();
 		return neuerSpieler;
 	}
 
 	public int getSize() {
-		return size;
+		return getSpielfeld().getSize();
 	}
 
-	public void setSize(int size) {
-		this.size = size;
-	}
 	
 	public Spielfeld getSpielfeld() {
 		return spielfeld;
 	}
 	
+	public void setSpielfeld(Spielfeld spielfeld) {
+		this.spielfeld = spielfeld;
+	}
+
+	public Hashtable<Integer, Spieler> getSpielerSet() {
+		return spielerSet;
+	}
+
+	public void setSpielerSet(Hashtable<Integer, Spieler> spielerSet) {
+		this.spielerSet = spielerSet;
+	}
+
 	public Set<Pos> woKann(Spieler s) {
 		return getSpielfeld().woKann(s.getColor());
 	}
@@ -72,7 +84,7 @@ public class ReversiSpiel implements IFSpielModel {
 	}
 	
 	public Spieler spielerAmZug() {
-		Enumeration<Spieler> spielerEnum = spieler.elements();
+		Enumeration<Spieler> spielerEnum = spielerSet.elements();
 		while (spielerEnum.hasMoreElements()){
 			Spieler s = spielerEnum.nextElement();
 			if (s.isAmZug())
@@ -83,7 +95,7 @@ public class ReversiSpiel implements IFSpielModel {
 
 	@Override
 	public void setzeSpielstein(int spielerNummer, int zeile, int spalte) {
-		setzeSpielstein( spieler.get(spielerNummer),new Pos(zeile,spalte));
+		setzeSpielstein( spielerSet.get(spielerNummer),new Pos(zeile,spalte));
 	}
 
 	@Override
@@ -113,16 +125,16 @@ public class ReversiSpiel implements IFSpielModel {
 	
 	private int getSpielerNummerFromColor(Colors color)
 	{
-		if (spieler.get(1).getColor().equals(color))
+		if (spielerSet.get(1).getColor().equals(color))
 			return 1;
-		if (spieler.get(2).getColor().equals(color))
+		if (spielerSet.get(2).getColor().equals(color))
 			return 2;
 		return -1;
 	}
 
 	public Spieler getGegner(Spieler spielerX) {
-		if (spielerX.equals(spieler.get(1))) return spieler.get(2);
-		if (spielerX.equals(spieler.get(2))) return spieler.get(1);
+		if (spielerX.equals(spielerSet.get(1))) return spielerSet.get(2);
+		if (spielerX.equals(spielerSet.get(2))) return spielerSet.get(1);
 		return null;
 	}
 
@@ -134,7 +146,7 @@ public class ReversiSpiel implements IFSpielModel {
 
 	@Override
 	public Spieler getSpieler(int i) {
-		return spieler.get(i);
+		return spielerSet.get(i);
 	}
 	
 	@Override
