@@ -10,9 +10,15 @@ public class Spielfeld {
 	private int size;
 	private TreeMap<Pos,Colors> map = new TreeMap<Pos,Colors>();
 	
+	private void log(String s)
+	{
+		// System.out.println(s);
+	}
+	
 	public Spielfeld(){}
 	
 	public void init(int s) {
+		log("Spielfeld.init("+s+")");
 		size = s;
 		for(int i = 0; i < size; i++) {
 			for(int j = 0; j < size; j++) {
@@ -134,6 +140,7 @@ public class Spielfeld {
 	}
 	
 	public boolean setzeSpielstein(Colors color, Pos p) {
+		log("Spielfeld.setzeSpielstein("+color+","+p+")");
 		ArrayList<Pos> positions = berechneUndPruefeWeg(p, color);
 		if (positions.size()==0)
 			return false;
