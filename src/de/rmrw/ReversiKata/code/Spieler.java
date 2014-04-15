@@ -37,6 +37,11 @@ public class Spieler {
 	public void setAmZug(boolean amZug) {
 		this.amZug = amZug;
 	}
+        
+        @Override
+        public String toString() {
+            return getName();
+        }
 	
 	
 }

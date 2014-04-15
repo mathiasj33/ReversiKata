@@ -2,8 +2,6 @@ package de.rmrw.ReversiKata.views;
 
 import java.io.File;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -26,15 +24,12 @@ public class JavaFXSpielViewMenu extends MenuBar {
 
 	private void addMenuSpieler() {
 		Menu menuSpieler = new Menu("Spieler");
-		MenuItem itemSpielerUmbenennen = new MenuItem("Namen ändern...");
+		MenuItem itemSpielerUmbenennen = new MenuItem("Namen Ã¤ndern...");
 		this.getMenus().add(menuSpieler);
 		menuSpieler.getItems().add(itemSpielerUmbenennen);
-		itemSpielerUmbenennen.setOnAction(new EventHandler<ActionEvent>(){
-			@Override
-			public void handle(ActionEvent arg0) {
-				onItemSpielerUmbenennen();
-				
-			}});
+		itemSpielerUmbenennen.setOnAction((ActionEvent) -> {
+                    onItemSpielerUmbenennen();
+                });
 	}
 
 	public void onItemSpielerUmbenennen() {
@@ -44,71 +39,54 @@ public class JavaFXSpielViewMenu extends MenuBar {
 
 	private void addMenuBearbeiten() {
 		Menu menuBearbeiten = new Menu("Bearbeiten");
-		MenuItem itemBearbeitenRueckgaengig = new MenuItem("Rückgängig");
+		MenuItem itemBearbeitenRueckgaengig = new MenuItem("RÃ¼ckgÃ¤ngig");
 		MenuItem itemBearbeitenWiederholen = new MenuItem("Wiederholen");
 		this.getMenus().add(menuBearbeiten);
 		menuBearbeiten.getItems().addAll(itemBearbeitenRueckgaengig, itemBearbeitenWiederholen);
 
-		itemBearbeitenRueckgaengig.setOnAction(new EventHandler<ActionEvent>(){
-			@Override
-			public void handle(ActionEvent arg0) {
+		itemBearbeitenRueckgaengig.setOnAction((ActionEvent) -> {
 				onItemBearbeitenRueckgaengig();
-				
-			}});
+				});
 
-		itemBearbeitenWiederholen.setOnAction(new EventHandler<ActionEvent>(){
-			@Override
-			public void handle(ActionEvent arg0) {
-				onItemBearbeitenWiederholen();
-				
-			}});
+		itemBearbeitenWiederholen.setOnAction((ActionEvent) -> {
+                    onItemBearbeitenWiederholen();
+                });
 
 	}
 
 	public void onItemBearbeitenWiederholen() {
-		// TODO Auto-generated method stub
-		
+		getModel().redo();
 	}
 
 	public void onItemBearbeitenRueckgaengig() {
-		// TODO Auto-generated method stub
-		
+		getModel().undo();
 	}
 
 	private void addMenuDatei() {
 		Menu menuDatei = new Menu("Datei");
 		MenuItem itemDateiNeu = new MenuItem("Neu");
-		MenuItem itemDateiOeffnen = new MenuItem("Öffnen...");
+		MenuItem itemDateiOeffnen = new MenuItem("Ã–ffnen...");
 		MenuItem itemDateiSpeichern = new MenuItem("Speichern...");
 		this.getMenus().add(menuDatei);
 		menuDatei.getItems().addAll(itemDateiNeu, itemDateiOeffnen, itemDateiSpeichern);
 		
-		itemDateiNeu.setOnAction(new EventHandler<ActionEvent>(){
-			@Override
-			public void handle(ActionEvent arg0) {
-				onItemDateiNeu();
-				
-			}});
+		itemDateiNeu.setOnAction((ActionEvent) -> {
+                    onItemDateiNeu();
+                });
 
-		itemDateiOeffnen.setOnAction(new EventHandler<ActionEvent>(){
-			@Override
-			public void handle(ActionEvent arg0) {
-				onItemDateiOeffnen();
-				
-			}});
+		itemDateiOeffnen.setOnAction((ActionEvent) -> {
+                    onItemDateiOeffnen();
+                });
 
-		itemDateiSpeichern.setOnAction(new EventHandler<ActionEvent>(){
-			@Override
-			public void handle(ActionEvent arg0) {
-				onItemDateiSpeichern();
-				
-			}});
+		itemDateiSpeichern.setOnAction((ActionEvent) -> {
+                    onItemDateiSpeichern();
+                });
 }
 
 	public void onItemDateiNeu() {
 		getModel().neuesSpiel();
 		JavaFXSpielRahmenView parent = getJavaFXSpielRahmenViewParent();
-		// Model und Views wieder richtig zuordnen (unschön)
+		// Model und Views wieder richtig zuordnen (unschÃ¶n)
 		parent.getSpielView().setModel(getModel().getSpiel());
 		getModel().getSpiel().addView(parent.getSpielView());
 		parent.update();
@@ -121,7 +99,7 @@ public class JavaFXSpielViewMenu extends MenuBar {
 		
 		getModel().ladeSpiel(file.getPath());
 		JavaFXSpielRahmenView parent = getJavaFXSpielRahmenViewParent();
-		// Model und Views wieder richtig zuordnen (unschön)
+		// Model und Views wieder richtig zuordnen (unschÃ¶n)
 		parent.getSpielView().setModel(getModel().getSpiel());
 		getModel().getSpiel().addView(parent.getSpielView());
 		parent.update();

@@ -77,7 +77,7 @@ public class SpielfeldTest {
 		Assert.assertEquals(1, ergebnisMenge.size());
 		Assert.assertTrue(ergebnisMenge.contains(new Pos(1, 0))); // Gegenprobe
 																	// nicht
-																	// nötig, da
+																	// nÃ¶tig, da
 																	// nur 1
 																	// Element
 																	// in der
@@ -94,7 +94,7 @@ public class SpielfeldTest {
 		// o o
 		// Eigentlich geht da gar nix, unser stub fuer
 		// esGibtEinenWegVonPosZuFarbe tut aber so, als ob bei (0,1) was gehen
-		// würde, wenn da kein Stein läge
+		// wÃ¼rde, wenn da kein Stein lÃ¤ge
 		// b w<-(b)
 		// o o
 
@@ -191,11 +191,11 @@ public class SpielfeldTest {
 	}
 
 	private void mockingFuerEsGibtEinenOderKeinenVertikal(Spielfeld spySpielfeld) {
-		// mocking - Iteratoren vollständig-Beginn
+		// mocking - Iteratoren vollstÃ¤ndig-Beginn
 		DirectionIterator mockDI = mock(DirectionIterator.class);
 		when(mockDI.hasNext()).thenReturn(true, true, false);
 		when(mockDI.next()).thenReturn(new Pos(-1, 0), new Pos(0, 1));
-		// prüft ausschließlich vertikal (nach oben) und horizontal (nach rechts)
+		// prÃ¼ft ausschlieÃŸlich vertikal (nach oben) und horizontal (nach rechts)
 
 		LineIterator mockLIVertikal = mock(LineIterator.class);
 		when(mockLIVertikal.hasNext()).thenReturn(true, true, true, true, false);
@@ -204,7 +204,7 @@ public class SpielfeldTest {
 		LineIterator mockLIHorizontal = mock(LineIterator.class);
 		when(mockLIHorizontal.hasNext()).thenReturn(true, true, true, true, false);
 		when(mockLIHorizontal.next()).thenReturn(new Pos(3, 0), new Pos(3, 1), new Pos(3, 2), new Pos(3, 3));
-		// mocking - Iteratoren vollständig-Ende
+		// mocking - Iteratoren vollstÃ¤ndig-Ende
 
 		// mocking - Spielfeld partiell/Teil 2-Beginn
 		doReturn(mockDI).when(spySpielfeld).createDirectionIterator(new Pos(3,0), spySpielfeld);
@@ -250,17 +250,17 @@ public class SpielfeldTest {
 
 	
 	private void mockingFuerEsGibtEinenOderKeinenDiagonal(Spielfeld spySpielfeld) {
-		// mocking - Iteratoren vollständig-Beginn
+		// mocking - Iteratoren vollstÃ¤ndig-Beginn
 		DirectionIterator mockDI = mock(DirectionIterator.class);
 		when(mockDI.hasNext()).thenReturn(true, false);
-		when(mockDI.next()).thenReturn(new Pos(1, -1)); // prüft ausschließlich
+		when(mockDI.next()).thenReturn(new Pos(1, -1)); // prÃ¼ft ausschlieÃŸlich
 														// diagonal rechts oben
 														// nach links unten
 
 		LineIterator mockLIDiagonal = mock(LineIterator.class);
 		when(mockLIDiagonal.hasNext()).thenReturn(true, true, true, true, false);
 		when(mockLIDiagonal.next()).thenReturn(new Pos(0, 3), new Pos(1, 2), new Pos(2, 1), new Pos(3, 0));
-		// mocking - Iteratoren vollständig-Ende
+		// mocking - Iteratoren vollstÃ¤ndig-Ende
 
 		// mocking - Spielfeld partiell/Teil 2-Beginn
 		doReturn(mockDI).when(spySpielfeld).createDirectionIterator(new Pos(0,3), spySpielfeld);
@@ -293,7 +293,7 @@ public class SpielfeldTest {
 		LineIterator mockLIVertikal = mock(LineIterator.class);
 		when(mockLIVertikal.hasNext()).thenReturn( true, true, true, true, false);
 		when(mockLIVertikal.next()).thenReturn( new Pos(0,3), new Pos(1,3), new Pos(2,3), new Pos(3,3)); 
-	// mocking - Iteratoren vollständig-Ende
+	// mocking - Iteratoren vollstÃ¤ndig-Ende
 	
 		// stub Iteratoren-Erzeugung
 		doReturn(mockDI).when(spySpielfeld).createDirectionIterator(new Pos(0,3), spySpielfeld);
@@ -333,7 +333,7 @@ public class SpielfeldTest {
 		LineIterator mockLIVertikal = mock(LineIterator.class);
 		when(mockLIVertikal.hasNext()).thenReturn(true, true, true, false);
 		when(mockLIVertikal.next()).thenReturn(new Pos(0, 0), new Pos(1, 0), new Pos(2, 0));
-		// mocking - Iteratoren vollständig-Ende
+		// mocking - Iteratoren vollstÃ¤ndig-Ende
 
 		// stub Iteratoren-Erzeugung
 		doReturn(mockDI).when(spySpielfeld).createDirectionIterator(new Pos(0,0), spySpielfeld);
@@ -371,7 +371,7 @@ public class SpielfeldTest {
 		LineIterator mockLIVertikal = mock(LineIterator.class);
 		when(mockLIVertikal.hasNext()).thenReturn( true, true, true, true, true, false);
 		when(mockLIVertikal.next()).thenReturn( new Pos(0,0), new Pos(1,0), new Pos(2,0), new Pos(3,0), new Pos(4,0)); 
-	    // mocking - Iteratoren vollständig-Ende
+	    // mocking - Iteratoren vollstÃ¤ndig-Ende
 		
 		// stub Iteratoren-Erzeugung
 		doReturn(mockDI).when(spySpielfeld).createDirectionIterator(new Pos(0,0), spySpielfeld);

@@ -18,6 +18,7 @@ public class ReversiMainJavaFX extends Application {
 		rahmenView.update();
 		
 		Scene s = new Scene(rahmenView,500,584);
+
 		s.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 		primaryStage.setScene(s);
 		primaryStage.show();

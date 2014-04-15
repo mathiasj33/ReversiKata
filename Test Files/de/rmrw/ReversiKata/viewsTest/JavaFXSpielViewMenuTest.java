@@ -31,15 +31,15 @@ public class JavaFXSpielViewMenuTest {
 		
 		Assert.assertEquals(3, getMenuFromText(menuBar, DATEI).getItems().size());
 		Assert.assertNotNull(getMenuItemFromText(menuBar, DATEI, "Neu"));
-		Assert.assertNotNull(getMenuItemFromText(menuBar, DATEI, "Öffnen..."));
+		Assert.assertNotNull(getMenuItemFromText(menuBar, DATEI, "Ã–ffnen..."));
 		Assert.assertNotNull(getMenuItemFromText(menuBar, DATEI, "Speichern..."));
 		
 		Assert.assertEquals(2, getMenuFromText(menuBar, BEARBEITEN).getItems().size());
-		Assert.assertNotNull(getMenuItemFromText(menuBar, BEARBEITEN, "Rückgängig"));
+		Assert.assertNotNull(getMenuItemFromText(menuBar, BEARBEITEN, "RÃ¼ckgÃ¤ngig"));
 		Assert.assertNotNull(getMenuItemFromText(menuBar, BEARBEITEN, "Wiederholen"));
 		
 		Assert.assertEquals(1, getMenuFromText(menuBar, SPIELER).getItems().size());
-		Assert.assertNotNull(getMenuItemFromText(menuBar, SPIELER, "Namen ändern..."));
+		Assert.assertNotNull(getMenuItemFromText(menuBar, SPIELER, "Namen Ã¤ndern..."));
 		
 	}
 

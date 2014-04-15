@@ -13,5 +13,13 @@ public interface IFSpielRahmenModel {
 	void spielSpeichern(String string);
 
 	void ladeSpiel(String string);
+        
+        default void undo() {
+            getSpiel().undo();
+        };
+        
+        default void redo() {
+            getSpiel().redo();
+        };
 
 }

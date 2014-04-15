@@ -16,6 +16,13 @@ public class Spielfeld {
 	}
 	
 	public Spielfeld(){}
+        
+        public Spielfeld(Spielfeld other) {
+            size = other.getSize();
+            for(Pos p : other.getMap().keySet()) {
+                map.put(p, other.getMap().get(p));
+            }
+        }
 	
 	public void init(int s) {
 		log("Spielfeld.init("+s+")");
@@ -72,20 +79,20 @@ public class Spielfeld {
 			ArrayList<Pos> aL = new ArrayList<Pos>();
 			Pos p = dit.next();
 			LineIterator lI = createLineIterator(startPos, p);
-			lI.next(); // Start-Position überspringen 
+			lI.next(); // Start-Position Ã¼berspringen 
 
-			// erster Nachbar muss existieren, weil der DirectionIterator sonst diese Richtung nicht zurückgeben würde
+			// erster Nachbar muss existieren, weil der DirectionIterator sonst diese Richtung nicht zurÃ¼ckgeben wÃ¼rde
 			Pos neighbourPos = lI.next(); 
 			// und er muss die entgegengesetzte Farbe haben
 			if (getColor(neighbourPos).equals(Colors.VOID) || getColor(neighbourPos).equals(c))
 				continue;
 			aL.add(neighbourPos);
 			// Unsere Startposition hat jetzt also einen Nachbarn in der anderen Farbe.
-			// Auf dem weiteren Weg müssen wir jetzt wieder einen in der gleichen Farbe finden:
+			// Auf dem weiteren Weg mÃ¼ssen wir jetzt wieder einen in der gleichen Farbe finden:
 			while (lI.hasNext()) {
 				Pos nextPosInLine = lI.next();
 				if (getColor(nextPosInLine)==Colors.VOID) {
-					break; // Lücke
+					break; // LÃ¼cke
 				}
 				else if (getColor(nextPosInLine).equals(c)) {
 					for(Pos pos : aL) {

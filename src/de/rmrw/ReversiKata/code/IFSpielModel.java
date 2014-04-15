@@ -17,4 +17,8 @@ public interface IFSpielModel {
 	public int getSteineAufFeld(int spielerNummer);
 	
 	public String getSpielerName(int spielerNummer);
+        
+        void undo();
+        
+        void redo();
 }
